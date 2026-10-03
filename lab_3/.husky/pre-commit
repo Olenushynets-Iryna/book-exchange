@@ -1,0 +1,2 @@
+cd lab_3
+npx lint-staged
