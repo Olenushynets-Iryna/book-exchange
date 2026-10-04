@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "cd .. && husky lab_3/.husky"
+    "prepare": "cd .. && husky lab_3/.husky",
+    "cy:open": "cypress open",
+    "test:component": "cypress run --component",
+    "test:e2e": "cypress run --e2e"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -21,6 +24,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "cypress": "^16.1.1",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",

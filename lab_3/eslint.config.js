@@ -20,4 +20,22 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+
+  {
+    files: ['**/*.cy.{js,jsx}', 'cypress/**/*.js'],
+    languageOptions: {
+      globals: {
+        cy: 'readonly',
+        Cypress: 'readonly',
+        describe: 'readonly',
+        context: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        before: 'readonly',
+        beforeEach: 'readonly',
+        after: 'readonly',
+        afterEach: 'readonly',
+      },
+    },
+  },
 ]);
