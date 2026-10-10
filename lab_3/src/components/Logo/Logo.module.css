@@ -1,0 +1,13 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.divider {
+  width: 1px;
+  height: 1em;
+  background-color: currentColor;
+}
