@@ -1,8 +1,8 @@
 import styles from './Logo.module.css';
 
-function Logo() {
+function Logo({ size }) {
   return (
-    <div className={styles.logo}>
+    <div className={styles.logo} style={size ? { fontSize: size } : undefined}>
       <span>B</span>
       <span className={styles.divider}></span>
       <span>E</span>

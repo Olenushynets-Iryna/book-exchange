@@ -3,6 +3,7 @@ import AccountSidebar from './AccountSidebar/AccountSidebar';
 import SettingsSection from './sections/SettingsSection/SettingsSection';
 import AnnouncementsSection from './sections/AnnouncementsSection/AnnouncementsSection';
 import OrdersSection from './sections/OrdersSection/OrdersSection';
+import Footer from '../../components/Footer/Footer';
 import styles from './AccountPage.module.css';
 
 const sections = {
@@ -17,10 +18,13 @@ function AccountPage() {
 
   return (
     <div className={styles.page}>
-      <AccountSidebar active={active} onSelect={setActive} />
-      <main className={styles.content}>
-        <Section />
-      </main>
+      <div className={styles.body}>
+        <AccountSidebar active={active} onSelect={setActive} />
+        <main className={styles.content}>
+          <Section />
+        </main>
+      </div>
+      <Footer />
     </div>
   );
 }
