@@ -1,0 +1,20 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--lang-color, var(--color-accent));
+  cursor: pointer;
+}
+
+.divider {
+  width: 1px;
+  height: 1em;
+  background-color: var(--lang-color, var(--color-accent));
+}

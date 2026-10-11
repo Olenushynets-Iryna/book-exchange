@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: var(--color-white);
+}
+
+.imageWrap {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-height: 140px;
+  padding-top: 24px;
+  overflow: hidden;
+}
+
+.image {
+  height: 150px;
+  width: auto;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 72px;
+  padding: 0 16px;
+  background-color: var(--color-card-footer);
+  color: var(--color-white);
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.price {
+  font-size: 16px;
+  white-space: nowrap;
+}

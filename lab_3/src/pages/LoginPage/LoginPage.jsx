@@ -2,6 +2,7 @@ import AuthLayout from '../../layouts/AuthLayout/AuthLayout';
 import AuthCard from '../../components/AuthCard/AuthCard';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import googleIcon from '../../assets/google.png';
 import styles from './LoginPage.module.css';
 
 function LoginPage() {
@@ -20,6 +21,8 @@ function LoginPage() {
             Forget password ?
           </a>
           <Button>Login</Button>
+          <p className={styles.or}>or</p>
+          <Button icon={googleIcon}>Continue with Google</Button>
         </form>
         <p className={styles.signup}>
           Not a Member?{' '}

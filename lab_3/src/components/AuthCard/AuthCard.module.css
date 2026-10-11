@@ -2,10 +2,10 @@
   display: flex;
   width: 100%;
   max-width: 750px;
-  min-height: 450px;
   background-color: var(--color-white);
   border-radius: 0 40px 40px 0;
   overflow: hidden;
+  min-height: 380px;
 }
 
 .imagePart {
@@ -27,12 +27,12 @@
 
 .title {
   margin: 0;
-  padding: 20px 0 12px;
+  padding: 14px 0 10px;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   border-bottom: 1px solid var(--color-primary);
 }
 
 .content {
-  padding: 24px 48px;
+  padding: 16px 40px 28px;
 }

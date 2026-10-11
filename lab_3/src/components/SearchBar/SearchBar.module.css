@@ -1,0 +1,25 @@
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+.input {
+  width: 170px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--color-primary);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-accent);
+}

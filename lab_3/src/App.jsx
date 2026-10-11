@@ -1,13 +1,7 @@
-import Logo from './components/Logo/Logo';
-import SignupPage from './pages/SignupPage/SignupPage.jsx';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
-  return (
-    <>
-      <Logo />
-      <SignupPage />
-    </>
-  );
+  return <LoginPage />;
 }
 
 export default App;
