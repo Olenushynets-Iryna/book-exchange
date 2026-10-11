@@ -1,0 +1,26 @@
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: 64px;
+  padding: 0 24px;
+  background-color: var(--color-white);
+}
+
+.tab {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 18px;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.tabActive {
+  text-decoration: underline;
+}
+
+.body {
+  padding: 24px;
+}

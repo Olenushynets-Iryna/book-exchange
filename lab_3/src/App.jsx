@@ -1,7 +1,7 @@
-import BookPage from './pages/BookPage/BookPage';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
-  return <BookPage />;
+  return <HomePage />;
 }
 
 export default App;
