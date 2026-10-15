@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
+  gap: 28px;
+}
+
+.add {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  font-family: inherit;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.wrap {
+  padding: 24px;
+}
