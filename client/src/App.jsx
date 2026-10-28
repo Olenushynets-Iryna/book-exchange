@@ -14,7 +14,6 @@ import OrdersSection from './pages/AccountPage/sections/OrdersSection/OrdersSect
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
-const isAuth = false;
 function App() {
   return (
     <Routes>
@@ -24,7 +23,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
 
-      <Route element={<ProtectedRoute isAuth={isAuth} />}>
+      <Route element={<ProtectedRoute />}>
         <Route path="/account" element={<AccountPage />}>
           <Route index element={<Navigate to="announcements" replace />} />
           <Route path="settings" element={<SettingsSection />}>

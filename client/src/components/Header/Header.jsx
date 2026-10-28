@@ -1,15 +1,24 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Logo from '../Logo/Logo';
 import SearchBar from '../SearchBar/SearchBar';
 import FilterBar from '../FilterBar/FilterBar';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import useAuth from '../../hooks/useAuth';
 import styles from './Header.module.css';
 
 function Header() {
   const [openPanel, setOpenPanel] = useState(null);
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   const toggle = (name) => setOpenPanel(openPanel === name ? null : name);
+
+  function handleLogout() {
+    logout();
+    setOpenPanel(null);
+    navigate('/');
+  }
 
   return (
     <header className={styles.header}>
@@ -45,8 +54,20 @@ function Header() {
       {openPanel === 'settings' && (
         <div className={styles.bottom}>
           <span className={styles.account}>
-            <Link to="/account">My account</Link> /{' '}
-            <Link to="/login">Login</Link>
+            {isAuthenticated ? (
+              <>
+                <Link to="/account">My account</Link> /{' '}
+                <button
+                  type="button"
+                  className={styles.logout}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </span>
           <LanguageSwitcher />
         </div>

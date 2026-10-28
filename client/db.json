@@ -5,15 +5,101 @@
       "name": "Iryna",
       "email": "test@example.com",
       "password": "123456"
+    },
+    {
+      "name": "OLENUSHYNETS IRYNA",
+      "surname": "IRYNA",
+      "birthDate": "01.12.2007",
+      "email": "irkaolenushinec@gmail.com",
+      "password": "123456",
+      "id": 2
     }
   ],
   "books": [
-    { "id": 1, "title": "Sherlock Holmes", "price": 650 },
-    { "id": 2, "title": "Five little pigs", "price": 350 },
-    { "id": 3, "title": "Love hypothesis", "price": 540 },
-    { "id": 4, "title": "House of strange children", "price": 300 },
-    { "id": 5, "title": "Lockwood & Co Corporation", "price": 540 },
-    { "id": 6, "title": "Alice in Wonderland", "price": 420 }
+    {
+      "id": 1,
+      "title": "Sherlock Holmes",
+      "price": 650,
+      "author": "Arthur Conan Doyle",
+      "genre": "Detective",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "A brilliant consulting detective and his friend Dr Watson solve strange and dangerous cases in Victorian London, relying on observation and logic.",
+      "seller": {
+        "nickname": "Nickname",
+        "donated": "1200 UAH",
+        "booksGiven": 8
+      }
+    },
+    {
+      "id": 2,
+      "title": "Five little pigs",
+      "price": 350,
+      "author": "Agatha Christie",
+      "genre": "Detective",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "Hercule Poirot investigates a murder that happened sixteen years ago by questioning the five people who were there on that day.",
+      "seller": {
+        "nickname": "Nickname",
+        "donated": "1200 UAH",
+        "booksGiven": 8
+      }
+    },
+    {
+      "id": 3,
+      "title": "Love hypothesis",
+      "price": 540,
+      "author": "Ali Hazelwood",
+      "genre": "Novel",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "A PhD student wants to convince her best friend that she is happy and dating someone, so she agrees to a fake relationship with a famous young professor. What starts as a simple arrangement slowly turns into something neither of them planned. The story mixes humour, science and a lot of awkward moments in a university lab.",
+      "seller": {
+        "nickname": "Nickname",
+        "donated": "1200 UAH",
+        "booksGiven": 8
+      }
+    },
+    {
+      "id": 4,
+      "title": "House of strange children",
+      "price": 300,
+      "author": "Ransom Riggs",
+      "genre": "Fantasy",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "After a family tragedy, a teenager travels to a remote island and discovers an old orphanage where the children are not quite ordinary.",
+      "seller": {
+        "nickname": "Nickname",
+        "donated": "1200 UAH",
+        "booksGiven": 8
+      }
+    },
+    {
+      "id": 5,
+      "title": "Lockwood & Co Corporation",
+      "price": 540,
+      "author": "Jonathan Stroud",
+      "genre": "Fantasy",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "In a London haunted by ghosts, a small agency run by teenagers investigates and removes dangerous hauntings.",
+      "seller": {
+        "nickname": "Nickname",
+        "donated": "1200 UAH",
+        "booksGiven": 8
+      }
+    },
+    {
+      "id": 6,
+      "title": "Alice in Wonderland",
+      "price": 420,
+      "author": "Lewis Carroll",
+      "genre": "Fairy tale",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "A curious girl follows a white rabbit down a rabbit hole and finds herself in a strange world full of talking animals and impossible rules.",
+      "seller": {
+        "nickname": "Nickname",
+        "donated": "1200 UAH",
+        "booksGiven": 8
+      }
+    }
   ],
   "announcements": [],
   "orders": []

@@ -1,28 +1,36 @@
 import { useState } from 'react';
+import { useParams } from 'react-router';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Button from '../../components/Button/Button';
+import useBook from '../../hooks/useBook';
 import styles from './BookPage.module.css';
 
-const book = {
-  title: 'The love Hypothesis',
-  author: 'Ali Hazelwood',
-  genre: 'Novel',
-  fundraiser: '128th Mountain Assault Brigade',
-  plot: 'A PhD student wants to convince her best friend that she is happy and dating someone, so she agrees to a fake relationship with a famous young professor. What starts as a simple arrangement slowly turns into something neither of them planned. The story mixes humour, science and a lot of awkward moments in a university lab.',
-};
-
-const seller = {
-  nickname: 'Nickname',
-  stats: [
-    { value: '1200 UAH', label: 'donated' },
-    { value: '8', label: 'books given' },
-  ],
-};
-
 function BookPage() {
+  const { id } = useParams();
+  const { book, isLoading, error } = useBook(id);
   const [expanded, setExpanded] = useState(false);
 
+  if (isLoading) {
+    return (
+      <MainLayout>
+        <p>Завантаження...</p>
+      </MainLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <MainLayout>
+        <p>{error}</p>
+      </MainLayout>
+    );
+  }
+
   const fields = [book.title, book.author, book.genre, book.fundraiser];
+  const stats = [
+    { value: book.seller.donated, label: 'donated' },
+    { value: String(book.seller.booksGiven), label: 'books given' },
+  ];
 
   return (
     <MainLayout>
@@ -81,9 +89,9 @@ function BookPage() {
             <circle cx="24" cy="19" r="7" />
             <path d="M10 39c2-8 8-11 14-11s12 3 14 11" />
           </svg>
-          <p className={styles.nickname}>{seller.nickname}</p>
+          <p className={styles.nickname}>{book.seller.nickname}</p>
           <ul className={styles.stats}>
-            {seller.stats.map((stat) => (
+            {stats.map((stat) => (
               <li key={stat.label}>
                 <span className={styles.statValue}>{stat.value}</span>
                 <span className={styles.statLabel}>{stat.label}</span>
