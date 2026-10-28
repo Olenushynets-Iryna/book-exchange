@@ -13,7 +13,8 @@
     "prepare": "cd .. && husky client/.husky",
     "cy:open": "cypress open",
     "test:component": "cypress run --component",
-    "test:e2e": "cypress run --e2e"
+    "test:e2e": "cypress run --e2e",
+    "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -32,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.5.6",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
+    "json-server": "0.17.4",
     "lint-staged": "^17.6.0",
     "prettier": "3.9.9",
     "vite": "^8.3.0"

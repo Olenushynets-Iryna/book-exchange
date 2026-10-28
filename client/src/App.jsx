@@ -12,26 +12,31 @@ import AnnouncementsSection from './pages/AccountPage/sections/AnnouncementsSect
 import AnnouncementForm from './pages/AccountPage/sections/AnnouncementsSection/AnnouncementForm/AnnouncementForm';
 import OrdersSection from './pages/AccountPage/sections/OrdersSection/OrdersSection';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
+const isAuth = false;
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/books/:id" element={<BookPage />} />
+
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
 
-      <Route path="/account" element={<AccountPage />}>
-        <Route index element={<Navigate to="announcements" replace />} />
-        <Route path="settings" element={<SettingsSection />}>
-          <Route index element={<Navigate to="profile" replace />} />
-          <Route path="profile" element={<ProfileTab />} />
-          <Route path="security" element={<SecurityTab />} />
-          <Route path="notifications" element={<NotificationsTab />} />
+      <Route element={<ProtectedRoute isAuth={isAuth} />}>
+        <Route path="/account" element={<AccountPage />}>
+          <Route index element={<Navigate to="announcements" replace />} />
+          <Route path="settings" element={<SettingsSection />}>
+            <Route index element={<Navigate to="profile" replace />} />
+            <Route path="profile" element={<ProfileTab />} />
+            <Route path="security" element={<SecurityTab />} />
+            <Route path="notifications" element={<NotificationsTab />} />
+          </Route>
+          <Route path="announcements" element={<AnnouncementsSection />} />
+          <Route path="announcements/new" element={<AnnouncementForm />} />
+          <Route path="orders" element={<OrdersSection />} />
         </Route>
-        <Route path="announcements" element={<AnnouncementsSection />} />
-        <Route path="announcements/new" element={<AnnouncementForm />} />
-        <Route path="orders" element={<OrdersSection />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />
