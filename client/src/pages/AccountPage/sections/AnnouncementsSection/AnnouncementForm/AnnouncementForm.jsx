@@ -1,20 +1,67 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Input from '../../../../../components/Input/Input';
 import Button from '../../../../../components/Button/Button';
 import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import useCreateAnnouncement from '../../../../../hooks/useCreateAnnouncement';
 import styles from './AnnouncementForm.module.css';
 
 function AnnouncementForm() {
   const navigate = useNavigate();
+  const { create, isSubmitting, error } = useCreateAnnouncement();
+  const [form, setForm] = useState({
+    title: '',
+    author: '',
+    genre: '',
+    fundraiser: '',
+    plot: '',
+  });
+
+  function handleChange(event) {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (isSubmitting) return;
+    const created = await create(form);
+    if (created) {
+      navigate('/account/announcements');
+    }
+  }
+
   return (
-    <div className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <section className={styles.card}>
         <h1 className={styles.title}>About the book</h1>
         <div className={styles.fields}>
-          <Input placeholder="Name" />
-          <Input placeholder="Author" />
-          <Input placeholder="Genre" />
-          <select className={styles.select} defaultValue="">
+          <Input
+            name="title"
+            placeholder="Name"
+            value={form.title}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            name="author"
+            placeholder="Author"
+            value={form.author}
+            onChange={handleChange}
+            required
+          />
+          <Input
+            name="genre"
+            placeholder="Genre"
+            value={form.genre}
+            onChange={handleChange}
+          />
+          <select
+            className={styles.select}
+            name="fundraiser"
+            value={form.fundraiser}
+            onChange={handleChange}
+            required
+          >
             <option value="" disabled>
               Choose fundraiser
             </option>
@@ -23,16 +70,20 @@ function AnnouncementForm() {
             <option>110th Separate Mechanized Brigade</option>
             <option>128th Mountain Assault Brigade</option>
           </select>
-          <Input placeholder="Add a plot" />
-          <Button onClick={() => navigate('/account/announcements')}>
-            Add
-          </Button>
+          <Input
+            name="plot"
+            placeholder="Add a plot"
+            value={form.plot}
+            onChange={handleChange}
+          />
+          {error && <p className={styles.error}>{error}</p>}
+          <Button type="submit">Add</Button>
         </div>
       </section>
       <div className={styles.photo}>
         <PhotoUpload />
       </div>
-    </div>
+    </form>
   );
 }
 

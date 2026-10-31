@@ -101,6 +101,81 @@
       }
     }
   ],
-  "announcements": [],
-  "orders": []
+  "announcements": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Five little pigs",
+      "author": "Agatha Christie",
+      "genre": "Detective",
+      "fundraiser": "Azov",
+      "plot": "Hercule Poirot investigates a murder from sixteen years ago."
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "Love hypothesis",
+      "author": "Ali Hazelwood",
+      "genre": "Novel",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "A fake relationship that turns into something real."
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "House of strange children",
+      "author": "Ransom Riggs",
+      "genre": "Fantasy",
+      "fundraiser": "Azov",
+      "plot": "A teenager discovers an orphanage for peculiar children."
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "title": "Lockwood & Co Corporation",
+      "author": "Jonathan Stroud",
+      "genre": "Fantasy",
+      "fundraiser": "110th Separate Mechanized Brigade",
+      "plot": "Teenage agents fight dangerous ghosts in London."
+    },
+    {
+      "title": "testName",
+      "author": "testAuthor",
+      "genre": "testGenre",
+      "fundraiser": "Azov",
+      "plot": "testPlot",
+      "userId": 1,
+      "id": 5
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Five little pigs",
+      "price": 350,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "Love hypothesis",
+      "price": 540,
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "House of strange children",
+      "price": 300,
+      "status": "archive"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "title": "Lockwood & Co Corporation",
+      "price": 540,
+      "status": "archive"
+    }
+  ]
 }

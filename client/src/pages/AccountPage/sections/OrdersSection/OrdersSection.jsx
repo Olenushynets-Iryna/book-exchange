@@ -1,29 +1,27 @@
 import BookCard from '../../../../components/BookCard/BookCard';
+import useOrders from '../../../../hooks/useOrders';
 import styles from './OrdersSection.module.css';
 
-const active = [
-  { id: 1, title: 'Five little pigs', price: 350 },
-  { id: 2, title: 'Love hypothesis', price: 540 },
-];
-
-const archive = [
-  { id: 3, title: 'House of strange children', price: 300 },
-  { id: 4, title: 'Lockwood & Co Corporation', price: 540 },
-];
-
 function OrdersSection() {
+  const { orders, isLoading, error } = useOrders();
+
+  const active = orders.filter((order) => order.status === 'active');
+  const archive = orders.filter((order) => order.status === 'archive');
+
   return (
     <div className={styles.wrap}>
+      {isLoading && <p>Завантаження...</p>}
+      {error && <p>Не вдалося завантажити замовлення: {error}</p>}
       <h2 className={styles.heading}>Active</h2>
       <div className={styles.grid}>
-        {active.map((book) => (
-          <BookCard key={book.id} title={book.title} price={book.price} />
+        {active.map((order) => (
+          <BookCard key={order.id} title={order.title} price={order.price} />
         ))}
       </div>
       <h2 className={styles.heading}>Archive</h2>
       <div className={styles.grid}>
-        {archive.map((book) => (
-          <BookCard key={book.id} title={book.title} price={book.price} />
+        {archive.map((order) => (
+          <BookCard key={order.id} title={order.title} price={order.price} />
         ))}
       </div>
     </div>
