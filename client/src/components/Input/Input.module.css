@@ -18,3 +18,32 @@
 .input:focus {
   border-bottom-width: 2px;
 }
+
+.wrap {
+  position: relative;
+  width: 100%;
+}
+
+.withEye {
+  padding-right: 44px;
+}
+
+.eye {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.eye svg {
+  width: 100%;
+  height: 100%;
+}
