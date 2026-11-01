@@ -13,6 +13,7 @@ import AnnouncementForm from './pages/AccountPage/sections/AnnouncementsSection/
 import OrdersSection from './pages/AccountPage/sections/OrdersSection/OrdersSection';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import PaymentPage from './pages/PaymentPage/PaymentPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
 
       <Route element={<ProtectedRoute />}>
+        <Route path="/pay/:orderId" element={<PaymentPage />} />
         <Route path="/account" element={<AccountPage />}>
           <Route index element={<Navigate to="announcements" replace />} />
           <Route path="settings" element={<SettingsSection />}>

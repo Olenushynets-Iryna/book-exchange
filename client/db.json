@@ -112,6 +112,12 @@
       "userId": 1,
       "bookId": 6,
       "status": "archive"
+    },
+    {
+      "userId": 2,
+      "bookId": 1,
+      "status": "active",
+      "id": 4
     }
   ]
 }

@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Button from '../../components/Button/Button';
 import useBook from '../../hooks/useBook';
+import useAuth from '../../hooks/useAuth';
+import useCreateOrder from '../../hooks/useCreateOrder';
 import styles from './BookPage.module.css';
 
 function BookPage() {
   const { id } = useParams();
   const { book, isLoading, error } = useBook(id);
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const { createOrder, isSubmitting, error: orderError } = useCreateOrder();
   const [expanded, setExpanded] = useState(false);
 
   if (isLoading) {
@@ -31,6 +36,19 @@ function BookPage() {
     { value: `${book.user.donated ?? 0} UAH`, label: 'donated' },
     { value: String(book.user.booksGiven ?? 0), label: 'books given' },
   ];
+  const isOwner = isAuthenticated && book.userId === user.id;
+
+  async function handleExchange() {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    if (isSubmitting) return;
+    const order = await createOrder(book.id);
+    if (order) {
+      navigate(`/pay/${order.id}`);
+    }
+  }
 
   return (
     <MainLayout>
@@ -72,7 +90,12 @@ function BookPage() {
           </div>
 
           <div className={styles.actions}>
-            <Button>Exchange</Button>
+            {isOwner ? (
+              <p className={styles.note}>Це ваша книга</p>
+            ) : (
+              <Button onClick={handleExchange}>Exchange</Button>
+            )}
+            {orderError && <p className={styles.error}>{orderError}</p>}
           </div>
         </section>
 
