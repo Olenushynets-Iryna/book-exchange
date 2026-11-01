@@ -15,6 +15,7 @@ function AnnouncementForm() {
     genre: '',
     fundraiser: '',
     plot: '',
+    price: '',
   });
 
   function handleChange(event) {
@@ -54,6 +55,15 @@ function AnnouncementForm() {
             placeholder="Genre"
             value={form.genre}
             onChange={handleChange}
+          />
+          <Input
+            type="number"
+            name="price"
+            min="1"
+            placeholder="Price, UAH"
+            value={form.price}
+            onChange={handleChange}
+            required
           />
           <select
             className={styles.select}

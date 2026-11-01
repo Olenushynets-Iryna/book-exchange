@@ -28,8 +28,8 @@ function BookPage() {
 
   const fields = [book.title, book.author, book.genre, book.fundraiser];
   const stats = [
-    { value: book.seller.donated, label: 'donated' },
-    { value: String(book.seller.booksGiven), label: 'books given' },
+    { value: `${book.user.donated ?? 0} UAH`, label: 'donated' },
+    { value: String(book.user.booksGiven ?? 0), label: 'books given' },
   ];
 
   return (
@@ -89,7 +89,7 @@ function BookPage() {
             <circle cx="24" cy="19" r="7" />
             <path d="M10 39c2-8 8-11 14-11s12 3 14 11" />
           </svg>
-          <p className={styles.nickname}>{book.seller.nickname}</p>
+          <p className={styles.nickname}>{book.user.name}</p>
           <ul className={styles.stats}>
             {stats.map((stat) => (
               <li key={stat.label}>

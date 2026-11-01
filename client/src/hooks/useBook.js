@@ -7,7 +7,7 @@ function useBook(id) {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch(`${API_URL}/books/${id}`, { signal: controller.signal })
+    fetch(`${API_URL}/books/${id}?_expand=user`, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) {
           throw new Error(

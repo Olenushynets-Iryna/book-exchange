@@ -7,7 +7,9 @@
       "password": "123456",
       "surname": "Test",
       "birthDate": "01.12.2007",
-      "address": ""
+      "address": "",
+      "donated": 800,
+      "booksGiven": 5
     },
     {
       "name": "OLENUSHYNETS IRYNA",
@@ -15,169 +17,100 @@
       "birthDate": "01.12.2007",
       "email": "irkaolenushinec@gmail.com",
       "password": "123456",
-      "id": 2
+      "id": 2,
+      "donated": 400,
+      "booksGiven": 2
     }
   ],
   "books": [
     {
       "id": 1,
+      "userId": 1,
       "title": "Sherlock Holmes",
       "price": 650,
       "author": "Arthur Conan Doyle",
-      "genre": "Detective",
+      "genre": "Mystery",
       "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "A brilliant consulting detective and his friend Dr Watson solve strange and dangerous cases in Victorian London, relying on observation and logic.",
-      "seller": {
-        "nickname": "Nickname",
-        "donated": "1200 UAH",
-        "booksGiven": 8
-      }
+      "plot": "A brilliant consulting detective and his friend Dr Watson solve strange and dangerous cases in Victorian London, relying on observation and logic."
     },
     {
       "id": 2,
+      "userId": 1,
       "title": "Five little pigs",
       "price": 350,
       "author": "Agatha Christie",
-      "genre": "Detective",
-      "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "Hercule Poirot investigates a murder that happened sixteen years ago by questioning the five people who were there on that day.",
-      "seller": {
-        "nickname": "Nickname",
-        "donated": "1200 UAH",
-        "booksGiven": 8
-      }
+      "genre": "Mystery",
+      "fundraiser": "Azov",
+      "plot": "Hercule Poirot investigates a murder that happened sixteen years ago by questioning the five people who were there on that day."
     },
     {
       "id": 3,
+      "userId": 1,
       "title": "Love hypothesis",
       "price": 540,
       "author": "Ali Hazelwood",
       "genre": "Novel",
-      "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "A PhD student wants to convince her best friend that she is happy and dating someone, so she agrees to a fake relationship with a famous young professor. What starts as a simple arrangement slowly turns into something neither of them planned. The story mixes humour, science and a lot of awkward moments in a university lab.",
-      "seller": {
-        "nickname": "Nickname",
-        "donated": "1200 UAH",
-        "booksGiven": 8
-      }
+      "fundraiser": "3 Separate Assault Brigade",
+      "plot": "A PhD student wants to convince her best friend that she is happy and dating someone, so she agrees to a fake relationship with a famous young professor. What starts as a simple arrangement slowly turns into something neither of them planned. The story mixes humour, science and a lot of awkward moments in a university lab."
     },
     {
       "id": 4,
+      "userId": 2,
       "title": "House of strange children",
       "price": 300,
       "author": "Ransom Riggs",
       "genre": "Fantasy",
-      "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "After a family tragedy, a teenager travels to a remote island and discovers an old orphanage where the children are not quite ordinary.",
-      "seller": {
-        "nickname": "Nickname",
-        "donated": "1200 UAH",
-        "booksGiven": 8
-      }
+      "fundraiser": "110th Separate Mechanized Brigade",
+      "plot": "After a family tragedy, a teenager travels to a remote island and discovers an old orphanage where the children are not quite ordinary."
     },
     {
       "id": 5,
+      "userId": 2,
       "title": "Lockwood & Co Corporation",
       "price": 540,
       "author": "Jonathan Stroud",
       "genre": "Fantasy",
-      "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "In a London haunted by ghosts, a small agency run by teenagers investigates and removes dangerous hauntings.",
-      "seller": {
-        "nickname": "Nickname",
-        "donated": "1200 UAH",
-        "booksGiven": 8
-      }
+      "fundraiser": "Azov",
+      "plot": "In a London haunted by ghosts, a small agency run by teenagers investigates and removes dangerous hauntings."
     },
     {
       "id": 6,
+      "userId": 2,
       "title": "Alice in Wonderland",
       "price": 420,
       "author": "Lewis Carroll",
-      "genre": "Fairy tale",
+      "genre": "Children",
+      "fundraiser": "47th Separate Mechanized Brigade",
+      "plot": "A curious girl follows a white rabbit down a rabbit hole and finds herself in a strange world full of talking animals and impossible rules."
+    },
+    {
+      "title": "testBook1",
+      "author": "testAuthor1",
+      "genre": "testGenre1",
       "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "A curious girl follows a white rabbit down a rabbit hole and finds herself in a strange world full of talking animals and impossible rules.",
-      "seller": {
-        "nickname": "Nickname",
-        "donated": "1200 UAH",
-        "booksGiven": 8
-      }
-    }
-  ],
-  "announcements": [
-    {
-      "id": 1,
+      "plot": "testPlot1",
+      "price": 600,
       "userId": 1,
-      "title": "Five little pigs",
-      "author": "Agatha Christie",
-      "genre": "Detective",
-      "fundraiser": "Azov",
-      "plot": "Hercule Poirot investigates a murder from sixteen years ago."
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "title": "Love hypothesis",
-      "author": "Ali Hazelwood",
-      "genre": "Novel",
-      "fundraiser": "128th Mountain Assault Brigade",
-      "plot": "A fake relationship that turns into something real."
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "title": "House of strange children",
-      "author": "Ransom Riggs",
-      "genre": "Fantasy",
-      "fundraiser": "Azov",
-      "plot": "A teenager discovers an orphanage for peculiar children."
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "title": "Lockwood & Co Corporation",
-      "author": "Jonathan Stroud",
-      "genre": "Fantasy",
-      "fundraiser": "110th Separate Mechanized Brigade",
-      "plot": "Teenage agents fight dangerous ghosts in London."
-    },
-    {
-      "title": "testName",
-      "author": "testAuthor",
-      "genre": "testGenre",
-      "fundraiser": "Azov",
-      "plot": "testPlot",
-      "userId": 1,
-      "id": 5
+      "id": 7
     }
   ],
   "orders": [
     {
       "id": 1,
       "userId": 1,
-      "title": "Five little pigs",
-      "price": 350,
+      "bookId": 4,
       "status": "active"
     },
     {
       "id": 2,
       "userId": 1,
-      "title": "Love hypothesis",
-      "price": 540,
+      "bookId": 5,
       "status": "active"
     },
     {
       "id": 3,
       "userId": 1,
-      "title": "House of strange children",
-      "price": 300,
-      "status": "archive"
-    },
-    {
-      "id": 4,
-      "userId": 1,
-      "title": "Lockwood & Co Corporation",
-      "price": 540,
+      "bookId": 6,
       "status": "archive"
     }
   ]

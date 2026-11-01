@@ -2,6 +2,16 @@ import BookCard from '../../../../components/BookCard/BookCard';
 import useOrders from '../../../../hooks/useOrders';
 import styles from './OrdersSection.module.css';
 
+function OrderCard({ order }) {
+  return (
+    <BookCard
+      title={order.book.title}
+      price={order.book.price}
+      to={`/books/${order.bookId}`}
+    />
+  );
+}
+
 function OrdersSection() {
   const { orders, isLoading, error } = useOrders();
 
@@ -15,13 +25,13 @@ function OrdersSection() {
       <h2 className={styles.heading}>Active</h2>
       <div className={styles.grid}>
         {active.map((order) => (
-          <BookCard key={order.id} title={order.title} price={order.price} />
+          <OrderCard key={order.id} order={order} />
         ))}
       </div>
       <h2 className={styles.heading}>Archive</h2>
       <div className={styles.grid}>
         {archive.map((order) => (
-          <BookCard key={order.id} title={order.title} price={order.price} />
+          <OrderCard key={order.id} order={order} />
         ))}
       </div>
     </div>

@@ -14,8 +14,13 @@ function AnnouncementsSection() {
         <p>У вас ще немає оголошень</p>
       )}
       <div className={styles.grid}>
-        {announcements.map((item) => (
-          <BookCard key={item.id} title={item.title} />
+        {announcements.map((book) => (
+          <BookCard
+            key={book.id}
+            title={book.title}
+            price={book.price}
+            to={`/books/${book.id}`}
+          />
         ))}
       </div>
       <Link
