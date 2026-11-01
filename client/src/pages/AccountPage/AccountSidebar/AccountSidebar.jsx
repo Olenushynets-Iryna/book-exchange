@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router';
 import Logo from '../../../components/Logo/Logo';
 import styles from './AccountSidebar.module.css';
+import useAuth from '../../../hooks/useAuth';
 
 const iconProps = {
   viewBox: '0 0 24 24',
@@ -46,6 +47,7 @@ const items = [
 ];
 
 function AccountSidebar() {
+  const { user } = useAuth();
   return (
     <aside className={styles.sidebar}>
       <div className={styles.top}>
@@ -59,7 +61,7 @@ function AccountSidebar() {
           <circle cx="12" cy="10" r="3.5" />
           <path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5" />
         </svg>
-        <span className={styles.nickname}>Nickname</span>
+        <span className={styles.nickname}>{user.name}</span>
       </div>
       <nav className={styles.nav}>
         {items.map((item) => (

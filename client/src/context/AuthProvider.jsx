@@ -29,7 +29,14 @@ function AuthProvider({ children }) {
   }
 
   function toSafeUser(found) {
-    return { id: found.id, name: found.name, email: found.email };
+    return {
+      id: found.id,
+      name: found.name,
+      surname: found.surname ?? '',
+      birthDate: found.birthDate ?? '',
+      email: found.email,
+      address: found.address ?? '',
+    };
   }
 
   async function login(email, password) {
@@ -72,12 +79,38 @@ function AuthProvider({ children }) {
     saveUser(null);
   }
 
+  async function updateUser(changes) {
+    if (changes.email && changes.email !== user.email) {
+      const params = new URLSearchParams({ email: changes.email });
+      const checkResponse = await fetch(`${API_URL}/users?${params}`);
+      if (!checkResponse.ok) {
+        throw new Error(`Помилка сервера: ${checkResponse.status}`);
+      }
+      const existing = await checkResponse.json();
+      if (existing.length > 0) {
+        throw new Error('Ця пошта вже використовується');
+      }
+    }
+
+    const response = await fetch(`${API_URL}/users/${user.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(changes),
+    });
+    if (!response.ok) {
+      throw new Error(`Помилка сервера: ${response.status}`);
+    }
+    const updated = await response.json();
+    saveUser(toSafeUser(updated));
+  }
+
   const value = {
     user,
     isAuthenticated: user !== null,
     login,
     register,
     logout,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

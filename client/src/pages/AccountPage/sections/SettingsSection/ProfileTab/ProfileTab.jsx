@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import FormCard from '../../../../../components/FormCard/FormCard';
 import Input from '../../../../../components/Input/Input';
 import Button from '../../../../../components/Button/Button';
 import PhotoUpload from '../../AnnouncementsSection/PhotoUpload/PhotoUpload';
+import useAuth from '../../../../../hooks/useAuth';
 import styles from './ProfileTab.module.css';
 
 const iconProps = {
@@ -49,15 +51,74 @@ const stats = [
 ];
 
 function ProfileTab() {
+  const { user, updateUser } = useAuth();
+  const [form, setForm] = useState({
+    name: user.name ?? '',
+    surname: user.surname ?? '',
+    birthDate: user.birthDate ?? '',
+    email: user.email ?? '',
+    address: user.address ?? '',
+  });
+  const [status, setStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  function handleChange(event) {
+    setForm({ ...form, [event.target.name]: event.target.value });
+    setStatus(null);
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      await updateUser(form);
+      setStatus({ kind: 'success', text: 'Дані збережено' });
+    } catch (err) {
+      setStatus({ kind: 'error', text: err.message });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
-    <div className={styles.layout}>
+    <form className={styles.layout} onSubmit={handleSubmit}>
       <FormCard title="Change the data">
-        <Input placeholder="Name" />
-        <Input placeholder="Surname" />
-        <Input placeholder="Date of Birth" />
-        <Input type="email" placeholder="Email" />
-        <Input placeholder="Address" />
-        <Button>Save</Button>
+        <Input
+          name="name"
+          placeholder="Name"
+          value={form.name}
+          onChange={handleChange}
+          required
+        />
+        <Input
+          name="surname"
+          placeholder="Surname"
+          value={form.surname}
+          onChange={handleChange}
+        />
+        <Input
+          name="birthDate"
+          placeholder="Date of Birth"
+          value={form.birthDate}
+          onChange={handleChange}
+        />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+        <Input
+          name="address"
+          placeholder="Address"
+          value={form.address}
+          onChange={handleChange}
+        />
+        {status && <p className={styles[status.kind]}>{status.text}</p>}
+        <Button type="submit">Save</Button>
       </FormCard>
 
       <div className={styles.side}>
@@ -82,7 +143,7 @@ function ProfileTab() {
           </ul>
         </section>
       </div>
-    </div>
+    </form>
   );
 }
 

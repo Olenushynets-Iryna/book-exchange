@@ -4,7 +4,10 @@
       "id": 1,
       "name": "Iryna",
       "email": "test@example.com",
-      "password": "123456"
+      "password": "123456",
+      "surname": "Test",
+      "birthDate": "01.12.2007",
+      "address": ""
     },
     {
       "name": "OLENUSHYNETS IRYNA",
