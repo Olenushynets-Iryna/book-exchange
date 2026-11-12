@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import AuthLayout from '../../layouts/AuthLayout/AuthLayout';
 import AuthCard from '../../components/AuthCard/AuthCard';
@@ -10,6 +11,7 @@ import styles from './SignupPage.module.css';
 import googleIcon from '../../assets/google.png';
 
 function SignupPage() {
+  const { t } = useTranslation();
   const { register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -44,14 +46,14 @@ function SignupPage() {
   return (
     <AuthLayout>
       <AuthCard
-        title="Sign Up"
+        title={t('auth.signup.title')}
         imageContent={
           <div>
-            <h2 className={styles.imageTitle}>Create your Account</h2>
+            <h2 className={styles.imageTitle}>{t('auth.signup.imageTitle')}</h2>
             <p className={styles.imageText}>
-              Exchange a book
+              {t('auth.signup.imageLine1')}
               <br />
-              Do a good deed
+              {t('auth.signup.imageLine2')}
             </p>
           </div>
         }
@@ -59,27 +61,27 @@ function SignupPage() {
         <form className={styles.form} onSubmit={handleSubmit}>
           <Input
             name="name"
-            placeholder="Name"
+            placeholder={t('auth.signup.name')}
             value={form.name}
             onChange={handleChange}
             required
           />
           <Input
             name="surname"
-            placeholder="Surname"
+            placeholder={t('auth.signup.surname')}
             value={form.surname}
             onChange={handleChange}
           />
           <Input
             name="birthDate"
-            placeholder="Date of Birth"
+            placeholder={t('auth.signup.birthDate')}
             value={form.birthDate}
             onChange={handleChange}
           />
           <Input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder={t('auth.email')}
             value={form.email}
             onChange={handleChange}
             required
@@ -87,15 +89,15 @@ function SignupPage() {
           <Input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder={t('auth.password')}
             value={form.password}
             onChange={handleChange}
             required
           />
           {error && <p className={styles.error}>{error}</p>}
-          <Button type="submit">Signup</Button>
-          <p className={styles.or}>or</p>
-          <Button icon={googleIcon}>Continue with Google</Button>
+          <Button type="submit">{t('auth.signup.submit')}</Button>
+          <p className={styles.or}>{t('auth.login.or')}</p>
+          <Button icon={googleIcon}>{t('auth.login.google')}</Button>
         </form>
       </AuthCard>
     </AuthLayout>

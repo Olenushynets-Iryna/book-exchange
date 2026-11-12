@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import Logo from '../Logo/Logo';
 import SearchBar from '../SearchBar/SearchBar';
 import FilterBar from '../FilterBar/FilterBar';
@@ -8,6 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import styles from './Header.module.css';
 
 function Header() {
+  const { t } = useTranslation();
   const [openPanel, setOpenPanel] = useState(null);
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.top}>
-        <Link to="/" aria-label="Home">
+        <Link to="/" aria-label={t('header.home')}>
           <Logo />
         </Link>
         <SearchBar />
@@ -32,7 +34,7 @@ function Header() {
           <button
             type="button"
             className={styles.settings}
-            aria-label="Settings"
+            aria-label={t('header.settings')}
             aria-expanded={openPanel === 'settings'}
             onClick={() => toggle('settings')}
           >
@@ -56,17 +58,17 @@ function Header() {
           <span className={styles.account}>
             {isAuthenticated ? (
               <>
-                <Link to="/account">My account</Link> /{' '}
+                <Link to="/account">{t('header.myAccount')}</Link> /{' '}
                 <button
                   type="button"
                   className={styles.logout}
                   onClick={handleLogout}
                 >
-                  Logout
+                  {t('header.logout')}
                 </button>
               </>
             ) : (
-              <Link to="/login">Login</Link>
+              <Link to="/login">{t('header.login')}</Link>
             )}
           </span>
           <LanguageSwitcher />

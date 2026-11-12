@@ -1,33 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import useBookFilters from '../../hooks/useBookFilters';
 import styles from './FilterBar.module.css';
-
-const genres = [
-  'Novel',
-  'Fantasy',
-  'Horror',
-  'Mystery',
-  'Thriller',
-  'Adventure',
-  'Fiction',
-  'Science fiction',
-  'History fiction',
-  'Children',
-  'Teenager',
-  'Adult',
-];
-
-const fundraisers = [
-  'Azov',
-  '3 Separate Assault Brigade',
-  '110th Separate Mechanized Brigade',
-  '128th Mountain Assault Brigade',
-  '47th Separate Mechanized Brigade',
-  '59th Separate Motorized Infantry Brigade',
-];
+import { genres, fundraisers } from '../../constants/options';
 
 const filterNames = ['price', 'genres', 'fundraisers'];
 
 function PricePanel({ filters, onApply }) {
+  const { t } = useTranslation();
+
   function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,7 +16,7 @@ function PricePanel({ filters, onApply }) {
 
   return (
     <form className={styles.price} onSubmit={handleSubmit}>
-      <span className={styles.priceLabel}>From</span>
+      <span className={styles.priceLabel}>{t('filters.from')}</span>
       <input
         className={styles.priceInput}
         type="number"
@@ -45,7 +25,7 @@ function PricePanel({ filters, onApply }) {
         placeholder="0"
         defaultValue={filters.minPrice}
       />
-      <span className={styles.priceLabel}>to</span>
+      <span className={styles.priceLabel}>{t('filters.to')}</span>
       <input
         className={styles.priceInput}
         type="number"
@@ -55,13 +35,14 @@ function PricePanel({ filters, onApply }) {
         defaultValue={filters.maxPrice}
       />
       <button type="submit" className={styles.ok}>
-        OK
+        {t('filters.ok')}
       </button>
     </form>
   );
 }
 
 function FilterBar({ active, onToggle }) {
+  const { t } = useTranslation();
   const { filters, hasFilters, setFilters, resetFilters } = useBookFilters();
 
   function chooseOption(key, value) {
@@ -91,15 +72,13 @@ function FilterBar({ active, onToggle }) {
           aria-expanded={active === name}
           onClick={() => onToggle(name)}
         >
-          {name === 'price' && 'Price'}
-          {name === 'genres' && 'Genres'}
-          {name === 'fundraisers' && 'Fundraisers'}
+          {t(`filters.${name}`)}
         </button>
       ))}
 
       {hasFilters && (
         <button type="button" className={styles.item} onClick={handleReset}>
-          Reset
+          {t('filters.reset')}
         </button>
       )}
 
@@ -118,7 +97,7 @@ function FilterBar({ active, onToggle }) {
                     className={`${styles.option} ${filters.genre === genre ? styles.optionActive : ''}`}
                     onClick={() => chooseOption('genre', genre)}
                   >
-                    {genre}
+                    {t(`genres.${genre}`)}
                   </button>
                 </li>
               ))}

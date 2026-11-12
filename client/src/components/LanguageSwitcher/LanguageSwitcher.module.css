@@ -18,3 +18,7 @@
   height: 1em;
   background-color: var(--lang-color, var(--color-accent));
 }
+
+.active {
+  font-weight: 700;
+}

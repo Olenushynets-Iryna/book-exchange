@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import i18n from '../i18n';
 import { AuthContext } from './AuthContext';
-import { API_URL } from '../services/api';
+import { API_URL, serverError } from '../services/api';
 
 const STORAGE_KEY = 'user';
 
@@ -24,7 +25,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem(STORAGE_KEY);
       }
     } catch {
-      // localStorage недоступний, користувач лишається лише в пам'яті
+      setUser(newUser);
     }
   }
 
@@ -43,11 +44,11 @@ function AuthProvider({ children }) {
     const params = new URLSearchParams({ email, password });
     const response = await fetch(`${API_URL}/users?${params}`);
     if (!response.ok) {
-      throw new Error(`Помилка сервера: ${response.status}`);
+      throw serverError(response.status);
     }
     const users = await response.json();
     if (users.length === 0) {
-      throw new Error('Невірна пошта або пароль');
+      throw new Error(i18n.t('errors.invalidCredentials'));
     }
     saveUser(toSafeUser(users[0]));
   }
@@ -56,11 +57,11 @@ function AuthProvider({ children }) {
     const params = new URLSearchParams({ email: data.email });
     const checkResponse = await fetch(`${API_URL}/users?${params}`);
     if (!checkResponse.ok) {
-      throw new Error(`Помилка сервера: ${checkResponse.status}`);
+      throw serverError(checkResponse.status);
     }
     const existing = await checkResponse.json();
     if (existing.length > 0) {
-      throw new Error('Користувач з такою поштою вже існує');
+      throw new Error(i18n.t('errors.emailTaken'));
     }
 
     const response = await fetch(`${API_URL}/users`, {
@@ -69,7 +70,7 @@ function AuthProvider({ children }) {
       body: JSON.stringify(data),
     });
     if (!response.ok) {
-      throw new Error(`Помилка сервера: ${response.status}`);
+      throw serverError(response.status);
     }
     const created = await response.json();
     saveUser(toSafeUser(created));
@@ -84,11 +85,11 @@ function AuthProvider({ children }) {
       const params = new URLSearchParams({ email: changes.email });
       const checkResponse = await fetch(`${API_URL}/users?${params}`);
       if (!checkResponse.ok) {
-        throw new Error(`Помилка сервера: ${checkResponse.status}`);
+        throw serverError(checkResponse.status);
       }
       const existing = await checkResponse.json();
       if (existing.length > 0) {
-        throw new Error('Ця пошта вже використовується');
+        throw new Error(i18n.t('errors.emailInUse'));
       }
     }
 
@@ -98,7 +99,7 @@ function AuthProvider({ children }) {
       body: JSON.stringify(changes),
     });
     if (!response.ok) {
-      throw new Error(`Помилка сервера: ${response.status}`);
+      throw serverError(response.status);
     }
     const updated = await response.json();
     saveUser(toSafeUser(updated));

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { API_URL } from '../services/api';
+import { API_URL, serverError } from '../services/api';
 
 function useBooks() {
   const [books, setBooks] = useState([]);
@@ -12,7 +12,7 @@ function useBooks() {
     fetch(`${API_URL}/books`, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Помилка сервера: ${response.status}`);
+          throw serverError(response.status);
         }
         return response.json();
       })

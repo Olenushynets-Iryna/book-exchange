@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { API_URL } from '../services/api';
+import { API_URL, serverError } from '../services/api';
 import useAuth from './useAuth';
 
 function useCreateAnnouncement() {
@@ -21,7 +21,7 @@ function useCreateAnnouncement() {
         }),
       });
       if (!response.ok) {
-        throw new Error(`Помилка сервера: ${response.status}`);
+        throw serverError(response.status);
       }
       return await response.json();
     } catch (err) {

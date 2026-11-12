@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import BookCard from '../../../../components/BookCard/BookCard';
 import useOrders from '../../../../hooks/useOrders';
 import styles from './OrdersSection.module.css';
@@ -13,6 +14,7 @@ function OrderCard({ order }) {
 }
 
 function OrdersSection() {
+  const { t } = useTranslation();
   const { orders, isLoading, error } = useOrders();
 
   const active = orders.filter((order) => order.status === 'active');
@@ -20,15 +22,15 @@ function OrdersSection() {
 
   return (
     <div className={styles.wrap}>
-      {isLoading && <p>Завантаження...</p>}
-      {error && <p>Не вдалося завантажити замовлення: {error}</p>}
-      <h2 className={styles.heading}>Active</h2>
+      {isLoading && <p>{t('common.loading')}</p>}
+      {error && <p>{t('account.orders.loadFailed', { error })}</p>}
+      <h2 className={styles.heading}>{t('account.orders.active')}</h2>
       <div className={styles.grid}>
         {active.map((order) => (
           <OrderCard key={order.id} order={order} />
         ))}
       </div>
-      <h2 className={styles.heading}>Archive</h2>
+      <h2 className={styles.heading}>{t('account.orders.archive')}</h2>
       <div className={styles.grid}>
         {archive.map((order) => (
           <OrderCard key={order.id} order={order} />

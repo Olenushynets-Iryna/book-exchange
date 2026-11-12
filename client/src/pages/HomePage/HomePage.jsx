@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import BookCard from '../../components/BookCard/BookCard';
 import styles from './HomePage.module.css';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
@@ -6,6 +7,7 @@ import useBookFilters from '../../hooks/useBookFilters';
 import { filterBooks } from '../../utils/filterBooks';
 
 function HomePage() {
+  const { t } = useTranslation();
   const { books, isLoading, error } = useBooks();
   const { filters } = useBookFilters();
 
@@ -13,10 +15,10 @@ function HomePage() {
 
   return (
     <MainLayout>
-      {isLoading && <p>Завантаження...</p>}
-      {error && <p>Не вдалося завантажити книги: {error}</p>}
+      {isLoading && <p>{t('common.loading')}</p>}
+      {error && <p>{t('home.loadFailed', { error })}</p>}
       {!isLoading && !error && visibleBooks.length === 0 && (
-        <p>Нічого не знайдено</p>
+        <p>{t('home.nothingFound')}</p>
       )}
       <section className={styles.grid}>
         {visibleBooks.map((book) => (

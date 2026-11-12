@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import FormCard from '../../components/FormCard/FormCard';
 import Button from '../../components/Button/Button';
@@ -8,6 +9,7 @@ import usePayment from '../../hooks/usePayment';
 import styles from './PaymentPage.module.css';
 
 function PaymentPage() {
+  const { t } = useTranslation();
   const { orderId } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ function PaymentPage() {
   if (isLoading) {
     return (
       <MainLayout>
-        <p>Завантаження...</p>
+        <p>{t('common.loading')}</p>
       </MainLayout>
     );
   }
@@ -29,7 +31,7 @@ function PaymentPage() {
   if (error) {
     return (
       <MainLayout>
-        <p>Замовлення не знайдено ({error})</p>
+        <p>{t('payment.notFound', { error })}</p>
       </MainLayout>
     );
   }
@@ -37,7 +39,7 @@ function PaymentPage() {
   if (!order.book || order.userId !== user.id || order.status !== 'pending') {
     return (
       <MainLayout>
-        <p>Це замовлення недоступне для оплати</p>
+        <p>{t('payment.unavailable')}</p>
       </MainLayout>
     );
   }
@@ -58,18 +60,19 @@ function PaymentPage() {
   return (
     <MainLayout>
       <div className={styles.page}>
-        <FormCard title="Payment (Sandbox)">
-          <p className={styles.text}>Book: {order.book.title}</p>
-          <p className={styles.text}>Amount: {order.book.price} UAH</p>
-          <p className={styles.note}>
-            Це заглушка. Справжній платіж LiqPay (Sandbox) буде підключено разом
-            із власним сервером.
+        <FormCard title={t('payment.title')}>
+          <p className={styles.text}>
+            {t('payment.book', { title: order.book.title })}
           </p>
+          <p className={styles.text}>
+            {t('payment.amount', { price: order.book.price })}
+          </p>
+          <p className={styles.note}>{t('payment.note')}</p>
           {payError && <p className={styles.error}>{payError}</p>}
           <Button onClick={handlePay}>
-            {isPaying ? 'Processing...' : 'Pay'}
+            {isPaying ? t('payment.processing') : t('payment.pay')}
           </Button>
-          <Button onClick={handleCancel}>Cancel</Button>
+          <Button onClick={handleCancel}>{t('payment.cancel')}</Button>
         </FormCard>
       </div>
     </MainLayout>

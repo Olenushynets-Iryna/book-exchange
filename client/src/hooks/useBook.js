@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { API_URL } from '../services/api';
+import i18n from '../i18n';
+import { API_URL, serverError } from '../services/api';
 
 function useBook(id) {
   const [result, setResult] = useState({ id: null, book: null, error: null });
@@ -10,11 +11,9 @@ function useBook(id) {
     fetch(`${API_URL}/books/${id}?_expand=user`, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(
-            response.status === 404
-              ? 'Книгу не знайдено'
-              : `Помилка сервера: ${response.status}`,
-          );
+          throw response.status === 404
+            ? new Error(i18n.t('errors.bookNotFound'))
+            : serverError(response.status);
         }
         return response.json();
       })

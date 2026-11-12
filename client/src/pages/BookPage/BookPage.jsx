@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Button from '../../components/Button/Button';
 import useBook from '../../hooks/useBook';
@@ -8,6 +9,7 @@ import useCreateOrder from '../../hooks/useCreateOrder';
 import styles from './BookPage.module.css';
 
 function BookPage() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { book, isLoading, error } = useBook(id);
   const { user, isAuthenticated } = useAuth();
@@ -18,7 +20,7 @@ function BookPage() {
   if (isLoading) {
     return (
       <MainLayout>
-        <p>Завантаження...</p>
+        <p>{t('common.loading')}</p>
       </MainLayout>
     );
   }
@@ -31,10 +33,21 @@ function BookPage() {
     );
   }
 
-  const fields = [book.title, book.author, book.genre, book.fundraiser];
+  const fields = [
+    book.title,
+    book.author,
+    t(`genres.${book.genre}`, { defaultValue: book.genre }),
+    book.fundraiser,
+  ];
   const stats = [
-    { value: `${book.user.donated ?? 0} UAH`, label: 'donated' },
-    { value: String(book.user.booksGiven ?? 0), label: 'books given' },
+    {
+      value: t('book.donatedValue', { value: book.user.donated ?? 0 }),
+      label: t('book.donated'),
+    },
+    {
+      value: String(book.user.booksGiven ?? 0),
+      label: t('book.booksGiven'),
+    },
   ];
   const isOwner = isAuthenticated && book.userId === user.id;
 
@@ -64,7 +77,7 @@ function BookPage() {
               </div>
             </div>
             <div className={styles.details}>
-              <h1 className={styles.heading}>About the book</h1>
+              <h1 className={styles.heading}>{t('book.about')}</h1>
               {fields.map((field) => (
                 <p key={field} className={styles.field}>
                   {field}
@@ -74,7 +87,7 @@ function BookPage() {
           </div>
 
           <div className={styles.plot}>
-            <h2 className={styles.plotTitle}>Plot</h2>
+            <h2 className={styles.plotTitle}>{t('book.plot')}</h2>
             <p
               className={`${styles.plotText} ${expanded ? '' : styles.clamped}`}
             >
@@ -85,15 +98,15 @@ function BookPage() {
               className={styles.toggle}
               onClick={() => setExpanded(!expanded)}
             >
-              {expanded ? 'Show less' : 'Show more'}
+              {expanded ? t('book.showLess') : t('book.showMore')}
             </button>
           </div>
 
           <div className={styles.actions}>
             {isOwner ? (
-              <p className={styles.note}>Це ваша книга</p>
+              <p className={styles.note}>{t('book.yourBook')}</p>
             ) : (
-              <Button onClick={handleExchange}>Exchange</Button>
+              <Button onClick={handleExchange}>{t('book.exchange')}</Button>
             )}
             {orderError && <p className={styles.error}>{orderError}</p>}
           </div>

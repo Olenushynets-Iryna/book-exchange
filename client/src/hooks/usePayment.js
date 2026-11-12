@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { API_URL } from '../services/api';
+import i18n from '../i18n';
+import { API_URL, serverError } from '../services/api';
 
 function usePayment() {
   const [isPaying, setIsPaying] = useState(false);
@@ -17,7 +18,7 @@ function usePayment() {
         body: JSON.stringify({ status: 'active' }),
       });
       if (!response.ok) {
-        throw new Error(`Помилка сервера: ${response.status}`);
+        throw serverError(response.status);
       }
       return true;
     } catch (err) {
@@ -32,7 +33,7 @@ function usePayment() {
     try {
       await fetch(`${API_URL}/orders/${orderId}`, { method: 'DELETE' });
     } catch {
-      setError('Не вдалося скасувати замовлення');
+      setError(i18n.t('errors.cancelFailed'));
     }
   }
 

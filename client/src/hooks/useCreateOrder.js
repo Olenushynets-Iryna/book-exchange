@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { API_URL } from '../services/api';
+import i18n from '../i18n';
+import { API_URL, serverError } from '../services/api';
 import useAuth from './useAuth';
 
 function useCreateOrder() {
@@ -14,11 +15,11 @@ function useCreateOrder() {
       const params = new URLSearchParams({ bookId });
       const checkResponse = await fetch(`${API_URL}/orders?${params}`);
       if (!checkResponse.ok) {
-        throw new Error(`Помилка сервера: ${checkResponse.status}`);
+        throw serverError(checkResponse.status);
       }
       const existing = await checkResponse.json();
       if (existing.some((order) => order.status !== 'pending')) {
-        throw new Error('Цю книгу вже замовлено');
+        throw new Error(i18n.t('errors.alreadyOrdered'));
       }
 
       const response = await fetch(`${API_URL}/orders`, {
@@ -27,7 +28,7 @@ function useCreateOrder() {
         body: JSON.stringify({ userId: user.id, bookId, status: 'pending' }),
       });
       if (!response.ok) {
-        throw new Error(`Помилка сервера: ${response.status}`);
+        throw serverError(response.status);
       }
       return await response.json();
     } catch (err) {

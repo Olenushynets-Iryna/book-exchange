@@ -19,7 +19,17 @@
       "password": "123456",
       "id": 2,
       "donated": 400,
-      "booksGiven": 2
+      "booksGiven": 2,
+      "address": "ВУЛ. ЛІТУНА АНДРІЯ"
+    },
+    {
+      "name": "egge",
+      "surname": "EGGE",
+      "birthDate": "01.12.2007",
+      "email": "egge@com",
+      "password": "123456",
+      "id": 3,
+      "address": "MUKACHEVO"
     }
   ],
   "books": [
@@ -92,6 +102,16 @@
       "price": 600,
       "userId": 1,
       "id": 7
+    },
+    {
+      "title": "test2",
+      "author": "testAuthor2",
+      "genre": "Teenager",
+      "price": 11,
+      "fundraiser": "3 Separate Assault Brigade",
+      "plot": "testPlot2",
+      "userId": 3,
+      "id": 8
     }
   ],
   "orders": [
@@ -118,6 +138,18 @@
       "bookId": 1,
       "status": "active",
       "id": 4
+    },
+    {
+      "userId": 2,
+      "bookId": 2,
+      "status": "active",
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "bookId": 3,
+      "status": "active",
+      "id": 6
     }
   ]
 }
