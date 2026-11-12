@@ -35,6 +35,14 @@
     "Teenager": "Підліткові",
     "Adult": "Для дорослих"
   },
+  "fundraisers": {
+    "Azov": "Азов",
+    "3 Separate Assault Brigade": "3-тя окрема штурмова бригада",
+    "110th Separate Mechanized Brigade": "110-та окрема механізована бригада",
+    "128th Mountain Assault Brigade": "128-ма гірсько-штурмова бригада",
+    "47th Separate Mechanized Brigade": "47-ма окрема механізована бригада",
+    "59th Separate Motorized Infantry Brigade": "59-та окрема мотопіхотна бригада"
+  },
   "footer": {
     "slogan": "Обміняй книгу. Зроби добру справу.",
     "contacts": "Контакти",

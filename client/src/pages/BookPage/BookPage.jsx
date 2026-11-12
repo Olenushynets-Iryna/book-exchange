@@ -37,7 +37,7 @@ function BookPage() {
     book.title,
     book.author,
     t(`genres.${book.genre}`, { defaultValue: book.genre }),
-    book.fundraiser,
+    t(`fundraisers.${book.fundraiser}`, { defaultValue: book.fundraiser }),
   ];
   const stats = [
     {

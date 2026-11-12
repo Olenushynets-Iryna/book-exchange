@@ -89,7 +89,9 @@ function AnnouncementForm() {
               {t('account.form.chooseFundraiser')}
             </option>
             {fundraisers.map((fund) => (
-              <option key={fund}>{fund}</option>
+              <option key={fund} value={fund}>
+                {t(`fundraisers.${fund}`)}
+              </option>
             ))}
           </select>
           <Input

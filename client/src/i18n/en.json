@@ -35,6 +35,14 @@
     "Teenager": "Teenager",
     "Adult": "Adult"
   },
+  "fundraisers": {
+    "Azov": "Azov",
+    "3 Separate Assault Brigade": "3rd Separate Assault Brigade",
+    "110th Separate Mechanized Brigade": "110th Separate Mechanized Brigade",
+    "128th Mountain Assault Brigade": "128th Mountain Assault Brigade",
+    "47th Separate Mechanized Brigade": "47th Separate Mechanized Brigade",
+    "59th Separate Motorized Infantry Brigade": "59th Separate Motorized Infantry Brigade"
+  },
   "footer": {
     "slogan": "Exchange a book. Do a good deed.",
     "contacts": "Contacts",

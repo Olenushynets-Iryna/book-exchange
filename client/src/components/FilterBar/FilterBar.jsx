@@ -113,7 +113,7 @@ function FilterBar({ active, onToggle }) {
                     className={`${styles.option} ${filters.fundraiser === fund ? styles.optionActive : ''}`}
                     onClick={() => chooseOption('fundraiser', fund)}
                   >
-                    {fund}
+                    {t(`fundraisers.${fund}`)}
                   </button>
                 </li>
               ))}
