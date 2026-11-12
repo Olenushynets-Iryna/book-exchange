@@ -1,0 +1,155 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Iryna",
+      "email": "test@example.com",
+      "password": "123456",
+      "surname": "Test",
+      "birthDate": "01.12.2007",
+      "address": "",
+      "donated": 800,
+      "booksGiven": 5
+    },
+    {
+      "name": "OLENUSHYNETS IRYNA",
+      "surname": "IRYNA",
+      "birthDate": "01.12.2007",
+      "email": "irkaolenushinec@gmail.com",
+      "password": "123456",
+      "id": 2,
+      "donated": 400,
+      "booksGiven": 2,
+      "address": "ВУЛ. ЛІТУНА АНДРІЯ"
+    },
+    {
+      "name": "egge",
+      "surname": "EGGE",
+      "birthDate": "01.12.2007",
+      "email": "egge@com",
+      "password": "123456",
+      "id": 3,
+      "address": "MUKACHEVO"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Sherlock Holmes",
+      "price": 650,
+      "author": "Arthur Conan Doyle",
+      "genre": "Mystery",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "A brilliant consulting detective and his friend Dr Watson solve strange and dangerous cases in Victorian London, relying on observation and logic."
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "Five little pigs",
+      "price": 350,
+      "author": "Agatha Christie",
+      "genre": "Mystery",
+      "fundraiser": "Azov",
+      "plot": "Hercule Poirot investigates a murder that happened sixteen years ago by questioning the five people who were there on that day."
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "Love hypothesis",
+      "price": 540,
+      "author": "Ali Hazelwood",
+      "genre": "Novel",
+      "fundraiser": "3 Separate Assault Brigade",
+      "plot": "A PhD student wants to convince her best friend that she is happy and dating someone, so she agrees to a fake relationship with a famous young professor. What starts as a simple arrangement slowly turns into something neither of them planned. The story mixes humour, science and a lot of awkward moments in a university lab."
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "title": "House of strange children",
+      "price": 300,
+      "author": "Ransom Riggs",
+      "genre": "Fantasy",
+      "fundraiser": "110th Separate Mechanized Brigade",
+      "plot": "After a family tragedy, a teenager travels to a remote island and discovers an old orphanage where the children are not quite ordinary."
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "title": "Lockwood & Co Corporation",
+      "price": 540,
+      "author": "Jonathan Stroud",
+      "genre": "Fantasy",
+      "fundraiser": "Azov",
+      "plot": "In a London haunted by ghosts, a small agency run by teenagers investigates and removes dangerous hauntings."
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "title": "Alice in Wonderland",
+      "price": 420,
+      "author": "Lewis Carroll",
+      "genre": "Children",
+      "fundraiser": "47th Separate Mechanized Brigade",
+      "plot": "A curious girl follows a white rabbit down a rabbit hole and finds herself in a strange world full of talking animals and impossible rules."
+    },
+    {
+      "title": "testBook1",
+      "author": "testAuthor1",
+      "genre": "testGenre1",
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "testPlot1",
+      "price": 600,
+      "userId": 1,
+      "id": 7
+    },
+    {
+      "title": "test2",
+      "author": "testAuthor2",
+      "genre": "Teenager",
+      "price": 11,
+      "fundraiser": "3 Separate Assault Brigade",
+      "plot": "testPlot2",
+      "userId": 3,
+      "id": 8
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "bookId": 4,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "bookId": 5,
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "bookId": 6,
+      "status": "archive"
+    },
+    {
+      "userId": 2,
+      "bookId": 1,
+      "status": "active",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "bookId": 2,
+      "status": "active",
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "bookId": 3,
+      "status": "active",
+      "id": 6
+    }
+  ]
+}

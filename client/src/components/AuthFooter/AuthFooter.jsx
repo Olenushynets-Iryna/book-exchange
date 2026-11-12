@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import styles from './AuthFooter.module.css';
 
 function AuthFooter() {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
-      <span>© 2026 Book Exchange for Charity</span>
+      <span>{t('footer.authCopy')}</span>
       <a className={styles.link} href="#">
-        Privacy policy
+        {t('footer.privacy')}
       </a>
     </footer>
   );

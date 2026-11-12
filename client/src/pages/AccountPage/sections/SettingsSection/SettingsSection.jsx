@@ -1,34 +1,26 @@
 import { NavLink, Outlet } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import styles from './SettingsSection.module.css';
 
+const tabs = ['profile', 'security', 'notifications'];
+
 function SettingsSection() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <nav className={styles.tabs}>
-        <NavLink
-          to="profile"
-          className={({ isActive }) =>
-            `${styles.tab} ${isActive ? styles.tabActive : ''}`
-          }
-        >
-          Profile
-        </NavLink>
-        <NavLink
-          to="security"
-          className={({ isActive }) =>
-            `${styles.tab} ${isActive ? styles.tabActive : ''}`
-          }
-        >
-          Security
-        </NavLink>
-        <NavLink
-          to="notifications"
-          className={({ isActive }) =>
-            `${styles.tab} ${isActive ? styles.tabActive : ''}`
-          }
-        >
-          Notifications
-        </NavLink>
+        {tabs.map((tab) => (
+          <NavLink
+            key={tab}
+            to={tab}
+            className={({ isActive }) =>
+              `${styles.tab} ${isActive ? styles.tabActive : ''}`
+            }
+          >
+            {t(`account.tabs.${tab}`)}
+          </NavLink>
+        ))}
       </nav>
       <div className={styles.body}>
         <Outlet />

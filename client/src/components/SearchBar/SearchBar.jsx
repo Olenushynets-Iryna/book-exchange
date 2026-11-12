@@ -1,6 +1,17 @@
+import { useTranslation } from 'react-i18next';
+import useBookFilters from '../../hooks/useBookFilters';
 import styles from './SearchBar.module.css';
 
 function SearchBar() {
+  const { t } = useTranslation();
+  const { filters, setFilters } = useBookFilters();
+
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      setFilters({ q: event.currentTarget.value.trim() });
+    }
+  }
+
   return (
     <label className={styles.search}>
       <svg
@@ -16,9 +27,12 @@ function SearchBar() {
         <line x1="10" y1="15" x2="4" y2="21" />
       </svg>
       <input
+        key={filters.q}
         className={styles.input}
         type="search"
-        placeholder="Search your book"
+        placeholder={t('search.placeholder')}
+        defaultValue={filters.q}
+        onKeyDown={handleKeyDown}
       />
     </label>
   );

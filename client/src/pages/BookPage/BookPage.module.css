@@ -146,3 +146,17 @@
   font-size: 14px;
   color: var(--color-accent);
 }
+
+.note {
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.error {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #b3261e;
+  text-align: center;
+}

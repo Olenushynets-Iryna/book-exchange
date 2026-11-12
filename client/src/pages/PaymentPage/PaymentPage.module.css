@@ -1,0 +1,26 @@
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.text {
+  margin: 0;
+  font-size: 18px;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.error {
+  margin: 0;
+  font-size: 14px;
+  color: #b3261e;
+  text-align: center;
+}

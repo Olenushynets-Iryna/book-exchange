@@ -1,0 +1,188 @@
+{
+  "common": {
+    "loading": "Loading..."
+  },
+  "header": {
+    "home": "Home",
+    "settings": "Settings",
+    "myAccount": "My account",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "search": {
+    "placeholder": "Search your book"
+  },
+  "filters": {
+    "price": "Price",
+    "genres": "Genres",
+    "fundraisers": "Fundraisers",
+    "from": "From",
+    "to": "to",
+    "reset": "Reset",
+    "ok": "OK"
+  },
+  "genres": {
+    "Novel": "Novel",
+    "Fantasy": "Fantasy",
+    "Horror": "Horror",
+    "Mystery": "Mystery",
+    "Thriller": "Thriller",
+    "Adventure": "Adventure",
+    "Fiction": "Fiction",
+    "Science fiction": "Science fiction",
+    "History fiction": "History fiction",
+    "Children": "Children",
+    "Teenager": "Teenager",
+    "Adult": "Adult"
+  },
+  "fundraisers": {
+    "Azov": "Azov",
+    "3 Separate Assault Brigade": "3rd Separate Assault Brigade",
+    "110th Separate Mechanized Brigade": "110th Separate Mechanized Brigade",
+    "128th Mountain Assault Brigade": "128th Mountain Assault Brigade",
+    "47th Separate Mechanized Brigade": "47th Separate Mechanized Brigade",
+    "59th Separate Motorized Infantry Brigade": "59th Separate Motorized Infantry Brigade"
+  },
+  "footer": {
+    "slogan": "Exchange a book. Do a good deed.",
+    "contacts": "Contacts",
+    "followUs": "Follow us",
+    "information": "Information",
+    "howItWorks": "How it works",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "copy": "© 2026 Book Exchange for Charity. All rights reserved.",
+    "authCopy": "© 2026 Book Exchange for Charity"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "login": {
+      "title": "Login",
+      "slogan": "Giving is the greatest act of grace.",
+      "forgot": "Forget password ?",
+      "submit": "Login",
+      "or": "or",
+      "google": "Continue with Google",
+      "notMember": "Not a Member?",
+      "signupLink": "Signup"
+    },
+    "signup": {
+      "title": "Sign Up",
+      "imageTitle": "Create your Account",
+      "imageLine1": "Exchange a book",
+      "imageLine2": "Do a good deed",
+      "name": "Name",
+      "surname": "Surname",
+      "birthDate": "Date of Birth",
+      "submit": "Signup"
+    }
+  },
+  "errors": {
+    "server": "Server error: {{status}}",
+    "invalidCredentials": "Invalid email or password",
+    "emailTaken": "A user with this email already exists",
+    "emailInUse": "This email is already in use",
+    "bookNotFound": "Book not found",
+    "alreadyOrdered": "This book has already been ordered",
+    "cancelFailed": "Could not cancel the order"
+  },
+  "home": {
+    "loadFailed": "Could not load books: {{error}}",
+    "nothingFound": "Nothing found"
+  },
+  "card": {
+    "price": "{{price}} UAH"
+  },
+  "book": {
+    "about": "About the book",
+    "plot": "Plot",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "exchange": "Exchange",
+    "yourBook": "This is your book",
+    "donated": "donated",
+    "booksGiven": "books given",
+    "donatedValue": "{{value}} UAH"
+  },
+  "payment": {
+    "title": "Payment (Sandbox)",
+    "book": "Book: {{title}}",
+    "amount": "Amount: {{price}} UAH",
+    "note": "This is a stub. Real LiqPay (Sandbox) payment will be connected together with our own server.",
+    "pay": "Pay",
+    "processing": "Processing...",
+    "cancel": "Cancel",
+    "unavailable": "This order is not available for payment",
+    "notFound": "Order not found ({{error}})"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  },
+  "photo": {
+    "add": "Add a photo",
+    "preview": "Preview"
+  },
+  "account": {
+    "sidebar": {
+      "settings": "Settings",
+      "announcements": "Announcement",
+      "orders": "Orders"
+    },
+    "tabs": {
+      "profile": "Profile",
+      "security": "Security",
+      "notifications": "Notifications"
+    },
+    "profile": {
+      "title": "Change the data",
+      "name": "Name",
+      "surname": "Surname",
+      "birthDate": "Date of Birth",
+      "email": "Email",
+      "address": "Address",
+      "save": "Save",
+      "saved": "Data saved",
+      "progress": "Your progress",
+      "level": "Current Level: ⭐ Book Philanthropist 🌱",
+      "books": "Books",
+      "stars": "Stars",
+      "trades": "Trades"
+    },
+    "security": {
+      "title": "Change password",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm password",
+      "save": "Save"
+    },
+    "notifications": {
+      "title": "Notification",
+      "order": "Get notified about a new order",
+      "fundraiser": "Get notified about a new fundraiser"
+    },
+    "announcements": {
+      "loadFailed": "Could not load announcements: {{error}}",
+      "empty": "You have no announcements yet",
+      "add": "Add a book"
+    },
+    "form": {
+      "title": "About the book",
+      "name": "Name",
+      "author": "Author",
+      "genre": "Genre",
+      "price": "Price, UAH",
+      "chooseFundraiser": "Choose fundraiser",
+      "plot": "Add a plot",
+      "add": "Add"
+    },
+    "orders": {
+      "active": "Active",
+      "archive": "Archive",
+      "loadFailed": "Could not load orders: {{error}}"
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "common": {
+    "loading": "Завантаження..."
+  },
+  "header": {
+    "home": "На головну",
+    "settings": "Налаштування",
+    "myAccount": "Мій акаунт",
+    "login": "Увійти",
+    "logout": "Вийти"
+  },
+  "search": {
+    "placeholder": "Знайдіть свою книгу"
+  },
+  "filters": {
+    "price": "Ціна",
+    "genres": "Жанри",
+    "fundraisers": "Збори",
+    "from": "Від",
+    "to": "до",
+    "reset": "Скинути",
+    "ok": "ОК"
+  },
+  "genres": {
+    "Novel": "Роман",
+    "Fantasy": "Фентезі",
+    "Horror": "Жахи",
+    "Mystery": "Детектив",
+    "Thriller": "Трилер",
+    "Adventure": "Пригоди",
+    "Fiction": "Художня література",
+    "Science fiction": "Наукова фантастика",
+    "History fiction": "Історична проза",
+    "Children": "Дитячі",
+    "Teenager": "Підліткові",
+    "Adult": "Для дорослих"
+  },
+  "fundraisers": {
+    "Azov": "Азов",
+    "3 Separate Assault Brigade": "3-тя окрема штурмова бригада",
+    "110th Separate Mechanized Brigade": "110-та окрема механізована бригада",
+    "128th Mountain Assault Brigade": "128-ма гірсько-штурмова бригада",
+    "47th Separate Mechanized Brigade": "47-ма окрема механізована бригада",
+    "59th Separate Motorized Infantry Brigade": "59-та окрема мотопіхотна бригада"
+  },
+  "footer": {
+    "slogan": "Обміняй книгу. Зроби добру справу.",
+    "contacts": "Контакти",
+    "followUs": "Підписуйтесь",
+    "information": "Інформація",
+    "howItWorks": "Як це працює",
+    "privacy": "Політика конфіденційності",
+    "terms": "Умови використання",
+    "copy": "© 2026 Book Exchange for Charity. Усі права захищено.",
+    "authCopy": "© 2026 Book Exchange for Charity"
+  },
+  "auth": {
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "showPassword": "Показати пароль",
+    "hidePassword": "Сховати пароль",
+    "login": {
+      "title": "Вхід",
+      "slogan": "Дарувати — найвищий прояв доброти.",
+      "forgot": "Забули пароль?",
+      "submit": "Увійти",
+      "or": "або",
+      "google": "Продовжити з Google",
+      "notMember": "Ще не з нами?",
+      "signupLink": "Зареєструватися"
+    },
+    "signup": {
+      "title": "Реєстрація",
+      "imageTitle": "Створіть акаунт",
+      "imageLine1": "Обміняй книгу",
+      "imageLine2": "Зроби добру справу",
+      "name": "Ім'я",
+      "surname": "Прізвище",
+      "birthDate": "Дата народження",
+      "submit": "Зареєструватися"
+    }
+  },
+  "errors": {
+    "server": "Помилка сервера: {{status}}",
+    "invalidCredentials": "Невірна пошта або пароль",
+    "emailTaken": "Користувач з такою поштою вже існує",
+    "emailInUse": "Ця пошта вже використовується",
+    "bookNotFound": "Книгу не знайдено",
+    "alreadyOrdered": "Цю книгу вже замовлено",
+    "cancelFailed": "Не вдалося скасувати замовлення"
+  },
+  "home": {
+    "loadFailed": "Не вдалося завантажити книги: {{error}}",
+    "nothingFound": "Нічого не знайдено"
+  },
+  "card": {
+    "price": "{{price}} грн"
+  },
+  "book": {
+    "about": "Про книгу",
+    "plot": "Сюжет",
+    "showMore": "Показати більше",
+    "showLess": "Показати менше",
+    "exchange": "Обмін",
+    "yourBook": "Це ваша книга",
+    "donated": "пожертвувано",
+    "booksGiven": "книг віддано",
+    "donatedValue": "{{value}} грн"
+  },
+  "payment": {
+    "title": "Оплата (Sandbox)",
+    "book": "Книга: {{title}}",
+    "amount": "Сума: {{price}} грн",
+    "note": "Це заглушка. Справжню оплату LiqPay (Sandbox) буде підключено разом із власним сервером.",
+    "pay": "Сплатити",
+    "processing": "Обробка...",
+    "cancel": "Скасувати",
+    "unavailable": "Це замовлення недоступне для оплати",
+    "notFound": "Замовлення не знайдено ({{error}})"
+  },
+  "notFound": {
+    "title": "Сторінку не знайдено",
+    "back": "На головну"
+  },
+  "photo": {
+    "add": "Додати фото",
+    "preview": "Попередній перегляд"
+  },
+  "account": {
+    "sidebar": {
+      "settings": "Налаштування",
+      "announcements": "Оголошення",
+      "orders": "Замовлення"
+    },
+    "tabs": {
+      "profile": "Профіль",
+      "security": "Безпека",
+      "notifications": "Сповіщення"
+    },
+    "profile": {
+      "title": "Зміна даних",
+      "name": "Ім'я",
+      "surname": "Прізвище",
+      "birthDate": "Дата народження",
+      "email": "Електронна пошта",
+      "address": "Адреса",
+      "save": "Зберегти",
+      "saved": "Дані збережено",
+      "progress": "Ваш прогрес",
+      "level": "Поточний рівень: ⭐ Книжковий філантроп 🌱",
+      "books": "Книги",
+      "stars": "Зірки",
+      "trades": "Обміни"
+    },
+    "security": {
+      "title": "Зміна пароля",
+      "current": "Поточний пароль",
+      "new": "Новий пароль",
+      "confirm": "Підтвердіть пароль",
+      "save": "Зберегти"
+    },
+    "notifications": {
+      "title": "Сповіщення",
+      "order": "Отримувати сповіщення про нове замовлення",
+      "fundraiser": "Отримувати сповіщення про новий збір"
+    },
+    "announcements": {
+      "loadFailed": "Не вдалося завантажити оголошення: {{error}}",
+      "empty": "У вас ще немає оголошень",
+      "add": "Додати книгу"
+    },
+    "form": {
+      "title": "Про книгу",
+      "name": "Назва",
+      "author": "Автор",
+      "genre": "Жанр",
+      "price": "Ціна, грн",
+      "chooseFundraiser": "Оберіть збір",
+      "plot": "Додайте опис сюжету",
+      "add": "Додати"
+    },
+    "orders": {
+      "active": "Активні",
+      "archive": "Архів",
+      "loadFailed": "Не вдалося завантажити замовлення: {{error}}"
+    }
+  }
+}
