@@ -12,7 +12,7 @@
       "booksGiven": 5
     },
     {
-      "name": "OLENUSHYNETS IRYNA",
+      "name": "OLENUSHYNETS І",
       "surname": "IRYNA",
       "birthDate": "01.12.2007",
       "email": "irkaolenushinec@gmail.com",
@@ -112,6 +112,16 @@
       "plot": "testPlot2",
       "userId": 3,
       "id": 8
+    },
+    {
+      "title": "риваоиуалои",
+      "author": "ушкрушрпршу",
+      "genre": "Mystery",
+      "price": 75757,
+      "fundraiser": "128th Mountain Assault Brigade",
+      "plot": "укгаршурак",
+      "userId": 2,
+      "id": 9
     }
   ],
   "orders": [
@@ -142,7 +152,7 @@
     {
       "userId": 2,
       "bookId": 2,
-      "status": "active",
+      "status": "archive",
       "id": 5
     },
     {
@@ -150,6 +160,12 @@
       "bookId": 3,
       "status": "active",
       "id": 6
+    },
+    {
+      "userId": 2,
+      "bookId": 8,
+      "status": "active",
+      "id": 7
     }
   ]
 }
