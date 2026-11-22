@@ -59,3 +59,10 @@
   background-color: var(--color-selected);
   color: var(--color-white);
 }
+
+.avatarImage {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}

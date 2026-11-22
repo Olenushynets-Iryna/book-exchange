@@ -1,0 +1,40 @@
+USE book_exchange;
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  surname VARCHAR(100) NULL,
+  birthDate VARCHAR(20) NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  passwordHash VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NULL,
+  avatar VARCHAR(255) NULL,
+  donated INT NOT NULL DEFAULT 0,
+  booksGiven INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE books (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  genre VARCHAR(100) NOT NULL,
+  fundraiser VARCHAR(255) NOT NULL,
+  price INT NOT NULL,
+  plot TEXT NULL,
+  image VARCHAR(255) NULL,
+  userId INT NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  bookId INT NOT NULL,
+  status ENUM('pending', 'active', 'archive') NOT NULL DEFAULT 'pending',
+  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (bookId) REFERENCES books(id) ON DELETE CASCADE
+);

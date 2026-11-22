@@ -1,20 +1,31 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import Logo from '../Logo/Logo';
 import SearchBar from '../SearchBar/SearchBar';
 import FilterBar from '../FilterBar/FilterBar';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import useAuth from '../../hooks/useAuth';
 import styles from './Header.module.css';
 
 function Header() {
+  const { t } = useTranslation();
   const [openPanel, setOpenPanel] = useState(null);
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   const toggle = (name) => setOpenPanel(openPanel === name ? null : name);
+
+  function handleLogout() {
+    logout();
+    setOpenPanel(null);
+    navigate('/');
+  }
 
   return (
     <header className={styles.header}>
       <div className={styles.top}>
-        <Link to="/" aria-label="Home">
+        <Link to="/" aria-label={t('header.home')}>
           <Logo />
         </Link>
         <SearchBar />
@@ -23,7 +34,7 @@ function Header() {
           <button
             type="button"
             className={styles.settings}
-            aria-label="Settings"
+            aria-label={t('header.settings')}
             aria-expanded={openPanel === 'settings'}
             onClick={() => toggle('settings')}
           >
@@ -45,8 +56,20 @@ function Header() {
       {openPanel === 'settings' && (
         <div className={styles.bottom}>
           <span className={styles.account}>
-            <Link to="/account">My account</Link> /{' '}
-            <Link to="/login">Login</Link>
+            {isAuthenticated ? (
+              <>
+                <Link to="/account">{t('header.myAccount')}</Link> /{' '}
+                <button
+                  type="button"
+                  className={styles.logout}
+                  onClick={handleLogout}
+                >
+                  {t('header.logout')}
+                </button>
+              </>
+            ) : (
+              <Link to="/login">{t('header.login')}</Link>
+            )}
           </span>
           <LanguageSwitcher />
         </div>

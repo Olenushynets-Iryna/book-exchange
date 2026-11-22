@@ -26,3 +26,16 @@
 .wrap {
   padding: 24px;
 }
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit {
+  align-self: center;
+  color: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+}
