@@ -18,7 +18,7 @@ const icons = {
   ),
 };
 
-function PhotoUpload({ variant = 'book' }) {
+function PhotoUpload({ variant = 'book', imageUrl = null, onSelect }) {
   const { t } = useTranslation();
   const [preview, setPreview] = useState(null);
 
@@ -26,23 +26,24 @@ function PhotoUpload({ variant = 'book' }) {
     const file = event.target.files[0];
     if (file) {
       setPreview(URL.createObjectURL(file));
+      if (onSelect) {
+        onSelect(file);
+      }
     }
   };
+
+  const shown = preview ?? imageUrl;
 
   return (
     <label className={styles.card}>
       <input
         className={styles.input}
         type="file"
-        accept="image/*"
+        accept="image/jpeg,image/png,image/webp"
         onChange={handleChange}
       />
-      {preview ? (
-        <img
-          className={styles.preview}
-          src={preview}
-          alt={t('photo.preview')}
-        />
+      {shown ? (
+        <img className={styles.preview} src={shown} alt={t('photo.preview')} />
       ) : (
         <svg
           className={styles.icon}

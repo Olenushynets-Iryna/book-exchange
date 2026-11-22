@@ -5,6 +5,7 @@ import Input from '../../../../../components/Input/Input';
 import Button from '../../../../../components/Button/Button';
 import PhotoUpload from '../../AnnouncementsSection/PhotoUpload/PhotoUpload';
 import useAuth from '../../../../../hooks/useAuth';
+import { fileUrl } from '../../../../../services/api';
 import styles from './ProfileTab.module.css';
 
 const iconProps = {
@@ -50,7 +51,7 @@ const stats = [
 
 function ProfileTab() {
   const { t } = useTranslation();
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, uploadAvatar } = useAuth();
   const [form, setForm] = useState({
     name: user.name ?? '',
     surname: user.surname ?? '',
@@ -59,11 +60,21 @@ function ProfileTab() {
     address: user.address ?? '',
   });
   const [status, setStatus] = useState(null);
+  const [avatarError, setAvatarError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
     setStatus(null);
+  }
+
+  async function handleAvatar(file) {
+    setAvatarError(null);
+    try {
+      await uploadAvatar(file);
+    } catch (err) {
+      setAvatarError(err.message);
+    }
   }
 
   async function handleSubmit(event) {
@@ -121,7 +132,12 @@ function ProfileTab() {
       </FormCard>
 
       <div className={styles.side}>
-        <PhotoUpload variant="avatar" />
+        <PhotoUpload
+          variant="avatar"
+          imageUrl={fileUrl(user.avatar)}
+          onSelect={handleAvatar}
+        />
+        {avatarError && <p className={styles.error}>{avatarError}</p>}
         <section className={styles.progress}>
           <h2 className={styles.progressTitle}>
             {t('account.profile.progress')}

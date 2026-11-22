@@ -7,7 +7,10 @@ function useFetch(path) {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch(`${API_URL}${path}`, { signal: controller.signal })
+    fetch(`${API_URL}${path}`, {
+      signal: controller.signal,
+      credentials: 'include',
+    })
       .then((response) => {
         if (!response.ok) {
           throw serverError(response.status);

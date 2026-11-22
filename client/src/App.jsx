@@ -14,6 +14,7 @@ import OrdersSection from './pages/AccountPage/sections/OrdersSection/OrdersSect
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
+import EditAnnouncement from './pages/AccountPage/sections/AnnouncementsSection/EditAnnouncement/EditAnnouncement';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           </Route>
           <Route path="announcements" element={<AnnouncementsSection />} />
           <Route path="announcements/new" element={<AnnouncementForm />} />
+          <Route path="announcements/:id/edit" element={<EditAnnouncement />} />
           <Route path="orders" element={<OrdersSection />} />
         </Route>
       </Route>

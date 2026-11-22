@@ -23,8 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
+
+.env
+.env.local
+*.log
+.vscode/*
+.DS_Store
+
 cypress/screenshots
 cypress/videos
 cypress/downloads
-
-.env

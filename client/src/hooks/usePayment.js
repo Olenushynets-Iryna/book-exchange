@@ -10,13 +10,13 @@ function usePayment() {
     setIsPaying(true);
     setError(null);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      const response = await fetch(`${API_URL}/orders/${orderId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: 'active' }),
+      const response = await fetch(`${API_URL}/orders/${orderId}/pay`, {
+        method: 'POST',
+        credentials: 'include',
       });
+      if (response.status === 409) {
+        throw new Error(i18n.t('errors.alreadyOrdered'));
+      }
       if (!response.ok) {
         throw serverError(response.status);
       }
@@ -31,7 +31,13 @@ function usePayment() {
 
   async function cancelOrder(orderId) {
     try {
-      await fetch(`${API_URL}/orders/${orderId}`, { method: 'DELETE' });
+      const response = await fetch(`${API_URL}/orders/${orderId}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+      if (!response.ok) {
+        throw serverError(response.status);
+      }
     } catch {
       setError(i18n.t('errors.cancelFailed'));
     }

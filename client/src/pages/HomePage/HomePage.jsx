@@ -5,6 +5,7 @@ import MainLayout from '../../layouts/MainLayout/MainLayout';
 import useBooks from '../../hooks/useBooks';
 import useBookFilters from '../../hooks/useBookFilters';
 import { filterBooks } from '../../utils/filterBooks';
+import { fileUrl } from '../../services/api';
 
 function HomePage() {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ function HomePage() {
             key={book.id}
             title={book.title}
             price={book.price}
+            image={fileUrl(book.image)}
             to={`/books/${book.id}`}
           />
         ))}

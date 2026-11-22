@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import BookCard from '../../../../components/BookCard/BookCard';
 import useOrders from '../../../../hooks/useOrders';
+import { fileUrl } from '../../../../services/api';
 import styles from './OrdersSection.module.css';
 
 function OrderCard({ order }) {
@@ -8,6 +9,7 @@ function OrderCard({ order }) {
     <BookCard
       title={order.book.title}
       price={order.book.price}
+      image={fileUrl(order.book.image)}
       to={`/books/${order.bookId}`}
     />
   );

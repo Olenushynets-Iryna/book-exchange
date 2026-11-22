@@ -87,7 +87,14 @@
     "emailInUse": "This email is already in use",
     "bookNotFound": "Book not found",
     "alreadyOrdered": "This book has already been ordered",
-    "cancelFailed": "Could not cancel the order"
+    "cancelFailed": "Could not cancel the order",
+    "invalidData": "Please check the entered data (valid email, password of at least 6 characters).",
+    "ownBook": "You cannot order your own book.",
+    "wrongPassword": "The current password is incorrect.",
+    "shortPassword": "The new password must be at least 6 characters.",
+    "notYourBook": "You can edit only your own books.",
+    "bookLocked": "This book is already ordered and cannot be edited.",
+    "fileTooLarge": "The file is too large (maximum 2 MB)."
   },
   "home": {
     "loadFailed": "Could not load books: {{error}}",
@@ -157,7 +164,9 @@
       "current": "Current password",
       "new": "New password",
       "confirm": "Confirm password",
-      "save": "Save"
+      "save": "Save",
+      "saved": "Password changed.",
+      "mismatch": "The new passwords do not match."
     },
     "notifications": {
       "title": "Notification",
@@ -167,7 +176,8 @@
     "announcements": {
       "loadFailed": "Could not load announcements: {{error}}",
       "empty": "You have no announcements yet",
-      "add": "Add a book"
+      "add": "Add a book",
+      "edit": "Edit"
     },
     "form": {
       "title": "About the book",
@@ -177,7 +187,10 @@
       "price": "Price, UAH",
       "chooseFundraiser": "Choose fundraiser",
       "plot": "Add a plot",
-      "add": "Add"
+      "add": "Add",
+      "editTitle": "Edit announcement",
+      "save": "Save",
+      "notYours": "You can edit only your own announcements."
     },
     "orders": {
       "active": "Active",

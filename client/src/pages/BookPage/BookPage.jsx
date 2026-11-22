@@ -7,6 +7,7 @@ import useBook from '../../hooks/useBook';
 import useAuth from '../../hooks/useAuth';
 import useCreateOrder from '../../hooks/useCreateOrder';
 import styles from './BookPage.module.css';
+import { fileUrl } from '../../services/api';
 
 function BookPage() {
   const { t } = useTranslation();
@@ -69,7 +70,18 @@ function BookPage() {
         <section className={styles.card}>
           <div className={styles.top}>
             <div className={styles.coverBlock}>
-              <div className={styles.cover}></div>
+              <div
+                className={styles.cover}
+                style={
+                  book.image
+                    ? {
+                        backgroundImage: `url(${fileUrl(book.image)})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }
+                    : undefined
+                }
+              ></div>
               <div className={styles.dots}>
                 <span className={styles.dot}></span>
                 <span className={styles.dot}></span>

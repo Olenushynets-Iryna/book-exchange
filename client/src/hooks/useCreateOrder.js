@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import i18n from '../i18n';
 import { API_URL, serverError } from '../services/api';
-import useAuth from './useAuth';
 
 function useCreateOrder() {
-  const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,21 +10,21 @@ function useCreateOrder() {
     setIsSubmitting(true);
     setError(null);
     try {
-      const params = new URLSearchParams({ bookId });
-      const checkResponse = await fetch(`${API_URL}/orders?${params}`);
-      if (!checkResponse.ok) {
-        throw serverError(checkResponse.status);
-      }
-      const existing = await checkResponse.json();
-      if (existing.some((order) => order.status !== 'pending')) {
-        throw new Error(i18n.t('errors.alreadyOrdered'));
-      }
-
       const response = await fetch(`${API_URL}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user.id, bookId, status: 'pending' }),
+        credentials: 'include',
+        body: JSON.stringify({ bookId }),
       });
+      if (response.status === 403) {
+        throw new Error(i18n.t('errors.ownBook'));
+      }
+      if (response.status === 404) {
+        throw new Error(i18n.t('errors.bookNotFound'));
+      }
+      if (response.status === 409) {
+        throw new Error(i18n.t('errors.alreadyOrdered'));
+      }
       if (!response.ok) {
         throw serverError(response.status);
       }

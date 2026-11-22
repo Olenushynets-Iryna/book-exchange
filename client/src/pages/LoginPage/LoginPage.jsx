@@ -9,6 +9,7 @@ import Button from '../../components/Button/Button';
 import useAuth from '../../hooks/useAuth';
 import googleIcon from '../../assets/google.png';
 import styles from './LoginPage.module.css';
+import useGoogleSignIn from '../../hooks/useGoogleSignIn';
 
 function LoginPage() {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const googleSignIn = useGoogleSignIn(setError);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -61,7 +63,9 @@ function LoginPage() {
           {error && <p className={styles.error}>{error}</p>}
           <Button type="submit">{t('auth.login.submit')}</Button>
           <p className={styles.or}>{t('auth.login.or')}</p>
-          <Button icon={googleIcon}>{t('auth.login.google')}</Button>
+          <Button type="button" icon={googleIcon} onClick={googleSignIn}>
+            {t('auth.login.google')}
+          </Button>
         </form>
         <p className={styles.signup}>
           {t('auth.login.notMember')}{' '}

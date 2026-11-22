@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import BookCard from '../../../../components/BookCard/BookCard';
 import useAnnouncements from '../../../../hooks/useAnnouncements';
+import { fileUrl } from '../../../../services/api';
 import styles from './AnnouncementsSection.module.css';
 
 function AnnouncementsSection() {
@@ -17,12 +18,20 @@ function AnnouncementsSection() {
       )}
       <div className={styles.grid}>
         {announcements.map((book) => (
-          <BookCard
-            key={book.id}
-            title={book.title}
-            price={book.price}
-            to={`/books/${book.id}`}
-          />
+          <div key={book.id} className={styles.item}>
+            <BookCard
+              title={book.title}
+              price={book.price}
+              image={fileUrl(book.image)}
+              to={`/books/${book.id}`}
+            />
+            <Link
+              to={`/account/announcements/${book.id}/edit`}
+              className={styles.edit}
+            >
+              {t('account.announcements.edit')}
+            </Link>
+          </div>
         ))}
       </div>
       <Link

@@ -4,21 +4,23 @@ import { useTranslation } from 'react-i18next';
 import Input from '../../../../../components/Input/Input';
 import Button from '../../../../../components/Button/Button';
 import PhotoUpload from '../PhotoUpload/PhotoUpload';
-import useCreateAnnouncement from '../../../../../hooks/useCreateAnnouncement';
+import useSaveAnnouncement from '../../../../../hooks/useSaveAnnouncement';
 import { genres, fundraisers } from '../../../../../constants/options';
+import { fileUrl } from '../../../../../services/api';
 import styles from './AnnouncementForm.module.css';
 
-function AnnouncementForm() {
+function AnnouncementForm({ book = null }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { create, isSubmitting, error } = useCreateAnnouncement();
+  const { save, isSubmitting, error } = useSaveAnnouncement();
+  const [photo, setPhoto] = useState(null);
   const [form, setForm] = useState({
-    title: '',
-    author: '',
-    genre: '',
-    price: '',
-    fundraiser: '',
-    plot: '',
+    title: book?.title ?? '',
+    author: book?.author ?? '',
+    genre: book?.genre ?? '',
+    price: book ? String(book.price) : '',
+    fundraiser: book?.fundraiser ?? '',
+    plot: book?.plot ?? '',
   });
 
   function handleChange(event) {
@@ -28,8 +30,8 @@ function AnnouncementForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     if (isSubmitting) return;
-    const created = await create(form);
-    if (created) {
+    const saved = await save(form, photo, book?.id);
+    if (saved) {
       navigate('/account/announcements');
     }
   }
@@ -37,7 +39,9 @@ function AnnouncementForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <section className={styles.card}>
-        <h1 className={styles.title}>{t('account.form.title')}</h1>
+        <h1 className={styles.title}>
+          {book ? t('account.form.editTitle') : t('account.form.title')}
+        </h1>
         <div className={styles.fields}>
           <Input
             name="title"
@@ -101,11 +105,16 @@ function AnnouncementForm() {
             onChange={handleChange}
           />
           {error && <p className={styles.error}>{error}</p>}
-          <Button type="submit">{t('account.form.add')}</Button>
+          <Button type="submit">
+            {book ? t('account.form.save') : t('account.form.add')}
+          </Button>
         </div>
       </section>
       <div className={styles.photo}>
-        <PhotoUpload />
+        <PhotoUpload
+          imageUrl={book ? fileUrl(book.image) : null}
+          onSelect={setPhoto}
+        />
       </div>
     </form>
   );
