@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import Logo from '../../../components/Logo/Logo';
+import useAuth from '../../../hooks/useAuth';
 import styles from './AccountSidebar.module.css';
 
 const iconProps = {
@@ -15,7 +17,7 @@ const iconProps = {
 const items = [
   {
     to: '/account/settings',
-    label: 'Settings',
+    labelKey: 'account.sidebar.settings',
     icon: (
       <svg {...iconProps}>
         <circle cx="12" cy="12" r="3" />
@@ -25,7 +27,7 @@ const items = [
   },
   {
     to: '/account/announcements',
-    label: 'Announcement',
+    labelKey: 'account.sidebar.announcements',
     icon: (
       <svg {...iconProps}>
         <path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z" />
@@ -35,7 +37,7 @@ const items = [
   },
   {
     to: '/account/orders',
-    label: 'Orders',
+    labelKey: 'account.sidebar.orders',
     icon: (
       <svg {...iconProps}>
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -46,10 +48,13 @@ const items = [
 ];
 
 function AccountSidebar() {
+  const { t } = useTranslation();
+  const { user } = useAuth();
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.top}>
-        <Link to="/" aria-label="Home">
+        <Link to="/" aria-label={t('header.home')}>
           <Logo />
         </Link>
       </div>
@@ -59,7 +64,7 @@ function AccountSidebar() {
           <circle cx="12" cy="10" r="3.5" />
           <path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5" />
         </svg>
-        <span className={styles.nickname}>Nickname</span>
+        <span className={styles.nickname}>{user.name}</span>
       </div>
       <nav className={styles.nav}>
         {items.map((item) => (
@@ -71,7 +76,7 @@ function AccountSidebar() {
             }
           >
             {item.icon}
-            {item.label}
+            {t(item.labelKey)}
           </NavLink>
         ))}
       </nav>

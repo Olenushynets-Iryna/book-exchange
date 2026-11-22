@@ -1,29 +1,39 @@
+import { useTranslation } from 'react-i18next';
 import BookCard from '../../../../components/BookCard/BookCard';
+import useOrders from '../../../../hooks/useOrders';
 import styles from './OrdersSection.module.css';
 
-const active = [
-  { id: 1, title: 'Five little pigs', price: 350 },
-  { id: 2, title: 'Love hypothesis', price: 540 },
-];
-
-const archive = [
-  { id: 3, title: 'House of strange children', price: 300 },
-  { id: 4, title: 'Lockwood & Co Corporation', price: 540 },
-];
+function OrderCard({ order }) {
+  return (
+    <BookCard
+      title={order.book.title}
+      price={order.book.price}
+      to={`/books/${order.bookId}`}
+    />
+  );
+}
 
 function OrdersSection() {
+  const { t } = useTranslation();
+  const { orders, isLoading, error } = useOrders();
+
+  const active = orders.filter((order) => order.status === 'active');
+  const archive = orders.filter((order) => order.status === 'archive');
+
   return (
     <div className={styles.wrap}>
-      <h2 className={styles.heading}>Active</h2>
+      {isLoading && <p>{t('common.loading')}</p>}
+      {error && <p>{t('account.orders.loadFailed', { error })}</p>}
+      <h2 className={styles.heading}>{t('account.orders.active')}</h2>
       <div className={styles.grid}>
-        {active.map((book) => (
-          <BookCard key={book.id} title={book.title} price={book.price} />
+        {active.map((order) => (
+          <OrderCard key={order.id} order={order} />
         ))}
       </div>
-      <h2 className={styles.heading}>Archive</h2>
+      <h2 className={styles.heading}>{t('account.orders.archive')}</h2>
       <div className={styles.grid}>
-        {archive.map((book) => (
-          <BookCard key={book.id} title={book.title} price={book.price} />
+        {archive.map((order) => (
+          <OrderCard key={order.id} order={order} />
         ))}
       </div>
     </div>

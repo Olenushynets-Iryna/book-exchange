@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './PhotoUpload.module.css';
 
 const icons = {
@@ -18,6 +19,7 @@ const icons = {
 };
 
 function PhotoUpload({ variant = 'book' }) {
+  const { t } = useTranslation();
   const [preview, setPreview] = useState(null);
 
   const handleChange = (event) => {
@@ -36,7 +38,11 @@ function PhotoUpload({ variant = 'book' }) {
         onChange={handleChange}
       />
       {preview ? (
-        <img className={styles.preview} src={preview} alt="Preview" />
+        <img
+          className={styles.preview}
+          src={preview}
+          alt={t('photo.preview')}
+        />
       ) : (
         <svg
           className={styles.icon}
@@ -51,7 +57,7 @@ function PhotoUpload({ variant = 'book' }) {
           {icons[variant]}
         </svg>
       )}
-      <span className={styles.text}>Add a photo</span>
+      <span className={styles.text}>{t('photo.add')}</span>
     </label>
   );
 }

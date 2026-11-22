@@ -1,28 +1,67 @@
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import MainLayout from '../../layouts/MainLayout/MainLayout';
 import Button from '../../components/Button/Button';
+import useBook from '../../hooks/useBook';
+import useAuth from '../../hooks/useAuth';
+import useCreateOrder from '../../hooks/useCreateOrder';
 import styles from './BookPage.module.css';
 
-const book = {
-  title: 'The love Hypothesis',
-  author: 'Ali Hazelwood',
-  genre: 'Novel',
-  fundraiser: '128th Mountain Assault Brigade',
-  plot: 'A PhD student wants to convince her best friend that she is happy and dating someone, so she agrees to a fake relationship with a famous young professor. What starts as a simple arrangement slowly turns into something neither of them planned. The story mixes humour, science and a lot of awkward moments in a university lab.',
-};
-
-const seller = {
-  nickname: 'Nickname',
-  stats: [
-    { value: '1200 UAH', label: 'donated' },
-    { value: '8', label: 'books given' },
-  ],
-};
-
 function BookPage() {
+  const { t } = useTranslation();
+  const { id } = useParams();
+  const { book, isLoading, error } = useBook(id);
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const { createOrder, isSubmitting, error: orderError } = useCreateOrder();
   const [expanded, setExpanded] = useState(false);
 
-  const fields = [book.title, book.author, book.genre, book.fundraiser];
+  if (isLoading) {
+    return (
+      <MainLayout>
+        <p>{t('common.loading')}</p>
+      </MainLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <MainLayout>
+        <p>{error}</p>
+      </MainLayout>
+    );
+  }
+
+  const fields = [
+    book.title,
+    book.author,
+    t(`genres.${book.genre}`, { defaultValue: book.genre }),
+    t(`fundraisers.${book.fundraiser}`, { defaultValue: book.fundraiser }),
+  ];
+  const stats = [
+    {
+      value: t('book.donatedValue', { value: book.user.donated ?? 0 }),
+      label: t('book.donated'),
+    },
+    {
+      value: String(book.user.booksGiven ?? 0),
+      label: t('book.booksGiven'),
+    },
+  ];
+  const isOwner = isAuthenticated && book.userId === user.id;
+
+  async function handleExchange() {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    if (isSubmitting) return;
+    const order = await createOrder(book.id);
+    if (order) {
+      navigate(`/pay/${order.id}`);
+    }
+  }
 
   return (
     <MainLayout>
@@ -38,7 +77,7 @@ function BookPage() {
               </div>
             </div>
             <div className={styles.details}>
-              <h1 className={styles.heading}>About the book</h1>
+              <h1 className={styles.heading}>{t('book.about')}</h1>
               {fields.map((field) => (
                 <p key={field} className={styles.field}>
                   {field}
@@ -48,7 +87,7 @@ function BookPage() {
           </div>
 
           <div className={styles.plot}>
-            <h2 className={styles.plotTitle}>Plot</h2>
+            <h2 className={styles.plotTitle}>{t('book.plot')}</h2>
             <p
               className={`${styles.plotText} ${expanded ? '' : styles.clamped}`}
             >
@@ -59,12 +98,17 @@ function BookPage() {
               className={styles.toggle}
               onClick={() => setExpanded(!expanded)}
             >
-              {expanded ? 'Show less' : 'Show more'}
+              {expanded ? t('book.showLess') : t('book.showMore')}
             </button>
           </div>
 
           <div className={styles.actions}>
-            <Button>Exchange</Button>
+            {isOwner ? (
+              <p className={styles.note}>{t('book.yourBook')}</p>
+            ) : (
+              <Button onClick={handleExchange}>{t('book.exchange')}</Button>
+            )}
+            {orderError && <p className={styles.error}>{orderError}</p>}
           </div>
         </section>
 
@@ -81,9 +125,9 @@ function BookPage() {
             <circle cx="24" cy="19" r="7" />
             <path d="M10 39c2-8 8-11 14-11s12 3 14 11" />
           </svg>
-          <p className={styles.nickname}>{seller.nickname}</p>
+          <p className={styles.nickname}>{book.user.name}</p>
           <ul className={styles.stats}>
-            {seller.stats.map((stat) => (
+            {stats.map((stat) => (
               <li key={stat.label}>
                 <span className={styles.statValue}>{stat.value}</span>
                 <span className={styles.statLabel}>{stat.label}</span>
